@@ -1,7 +1,10 @@
 {
   "resources": [
+    {"id":{"name":"Sprite1_Walk","path":"sprites/Sprite1_Walk/Sprite1_Walk.yy",},"order":1,},
+    {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},"order":1,},
+    {"id":{"name":"PlayerAnimateSprite","path":"scripts/PlayerAnimateSprite/PlayerAnimateSprite.yy",},"order":0,},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":0,},
-    {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},"order":15,},
+    {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},"order":0,},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
   ],
   "Options": [
