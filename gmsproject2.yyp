@@ -1,11 +1,19 @@
 {
   "resources": [
+    {"id":{"name":"PlayerCollision","path":"scripts/PlayerCollision/PlayerCollision.yy",},"order":2,},
+    {"id":{"name":"Sprite1_Roll","path":"sprites/Sprite1_Roll/Sprite1_Roll.yy",},"order":3,},
+    {"id":{"name":"rVillage","path":"rooms/rVillage/rVillage.yy",},"order":1,},
+    {"id":{"name":"tCol","path":"tilesets/tCol/tCol.yy",},"order":0,},
     {"id":{"name":"Sprite1_Walk","path":"sprites/Sprite1_Walk/Sprite1_Walk.yy",},"order":1,},
+    {"id":{"name":"sCol","path":"sprites/sCol/sCol.yy",},"order":2,},
     {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},"order":1,},
     {"id":{"name":"PlayerAnimateSprite","path":"scripts/PlayerAnimateSprite/PlayerAnimateSprite.yy",},"order":0,},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":0,},
+    {"id":{"name":"PlayerStateFree","path":"scripts/PlayerStateFree/PlayerStateFree.yy",},"order":5,},
     {"id":{"name":"Sprite1","path":"sprites/Sprite1/Sprite1.yy",},"order":0,},
-    {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},"order":0,},
+    {"id":{"name":"PlayerStateRoll","path":"scripts/PlayerStateRoll/PlayerStateRoll.yy",},"order":4,},
+    {"id":{"name":"rInit","path":"rooms/rInit/rInit.yy",},"order":2,},
+    {"id":{"name":"rParent","path":"rooms/rParent/rParent.yy",},"order":0,},
   ],
   "Options": [
     {"name":"Main","path":"options/main/options_main.yy",},
@@ -19,7 +27,9 @@
     "children": [],
   },
   "RoomOrderNodes": [
-    {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"rInit","path":"rooms/rInit/rInit.yy",},},
+    {"roomId":{"name":"rParent","path":"rooms/rParent/rParent.yy",},},
+    {"roomId":{"name":"rVillage","path":"rooms/rVillage/rVillage.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Sprites.yy","order":1,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
