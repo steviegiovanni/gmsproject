@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "PlayerAttacks",
-    "path": "folders/Scripts/PlayerAttacks.yy",
+    "name": "Slime",
+    "path": "folders/Scripts/Slime.yy",
   },
   "resourceVersion": "1.0",
-  "name": "CalcAttack",
+  "name": "SlimeFunctions",
   "tags": [],
   "resourceType": "GMScript",
 }
