@@ -25,6 +25,9 @@ statePrevious = state;
 stateWait = 0;
 stateWaitDuration = 0;
 
+// sprites
+sprMove = sSlime;
+
 // unit scripts
 unitScript[UNIT_STATE.IDLE] = -1;
 unitScript[UNIT_STATE.WANDER] = -1;
