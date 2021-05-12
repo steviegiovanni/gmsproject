@@ -5,7 +5,7 @@ function SlimeWander()
 	sprite_index = sprMove;
 	
 	// at destination or given up?
-	if(((x == xTo) && (y == yTo)) || timePassed > enemyWanderDistance / enemySpeed)
+	if(((x == xTo) && (y == yTo)) || timePassedWandering > enemyWanderDistance / enemySpeed)
 	{
 		hSpeed = 0;
 		vSpeed = 0;
@@ -18,10 +18,10 @@ function SlimeWander()
 		}
 		
 		// set new target destination
-		if(++wait >= waitDuration)
+		if(++timePassedBeforeWandering >= waitTimeBeforeWandering)
 		{
-			wait = 0;
-			timePassed = 0;
+			timePassedBeforeWandering = 0;
+			timePassedWandering = 0;
 			dir = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
 			xTo = x + lengthdir_x(enemyWanderDistance, dir);
 			yTo = y + lengthdir_y(enemyWanderDistance, dir);
@@ -29,8 +29,8 @@ function SlimeWander()
 	}
 	else // move towards new destination
 	{
-		timePassed++;
-		image_speed = 0.35;
+		timePassedWandering++;
+		image_speed = 1.0;
 		var _distanceToGo = point_distance(x, y, xTo, yTo);
 		var _speedThisFrame = enemySpeed;
 		if(_distanceToGo < enemySpeed)
@@ -56,7 +56,7 @@ function SlimeWander()
 		if(instance_exists(oPlayer)
 		&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= enemyAggroRadius))
 		{
-			state = ENEMYSTATE.CHASE;
+			state = UNIT_STATE.CHASE;
 			target = oPlayer;
 		}
 	}
@@ -92,7 +92,7 @@ function SlimeChase()
 	if(instance_exists(target)
 	&& (point_distance(x, y, target.x, target.y) <= enemyAttackRadius))
 	{
-		state = ENEMYSTATE.ATTACK;
+		state = UNIT_STATE.ATTACK;
 		sprite_index = sprAttack;
 		image_index = 0;
 		image_speed = 1.0;
@@ -154,9 +154,9 @@ function SlimeAttack()
 		y = yTo;
 		if(floor(image_index) == 5)
 		{
-			stateTarget = ENEMYSTATE.CHASE;
+			stateTarget = UNIT_STATE.CHASE;
 			stateWaitDuration = 15;
-			state = ENEMYSTATE.WAIT;
+			state = UNIT_STATE.WAIT;
 		}
 	}
 }
@@ -188,13 +188,13 @@ function SlimeHurt()
 	{
 		x = xTo;
 		y = yTo;
-		if(statePrevious != ENEMYSTATE.ATTACK)
+		if(statePrevious != UNIT_STATE.ATTACK)
 		{
 			state = statePrevious;
 		}
 		else
 		{
-			state = ENEMYSTATE.CHASE;
+			state = UNIT_STATE.CHASE;
 		}
 	}
 }

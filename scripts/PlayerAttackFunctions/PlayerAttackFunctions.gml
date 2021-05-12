@@ -28,11 +28,6 @@ function AttackSlash()
 	}
 }
 
-function AttackSpin()
-{
-
-}
-
 // use attack hitbox & check for hit
 function CalcAttack(_HBSprite)
 {
@@ -72,7 +67,7 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 {
 	with(_enemy)
 	{
-		if(state != ENEMYSTATE.DIE)
+		if(state != UNIT_STATE.DIE)
 		{
 			enemyHP -= _damage;
 			flash = 1;
@@ -80,15 +75,15 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 			// hurt or dead?
 			if(enemyHP <= 0)
 			{
-				state = ENEMYSTATE.DIE;
+				state = UNIT_STATE.DIE;
 			}
 			else
 			{
-				if(state != ENEMYSTATE.HURT)
+				if(state != UNIT_STATE.HURT)
 				{
 					statePrevious = state;
 				}
-				state = ENEMYSTATE.HURT;
+				state = UNIT_STATE.HURT;
 			}
 			
 			image_index = 0;

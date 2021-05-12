@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-state = ENEMYSTATE.WANDER;
+state = UNIT_STATE.WANDER;
 
 // enemy sprites
 sprMove = sSlime;
@@ -10,8 +10,8 @@ sprDie = sSlimeDie;
 sprHurt = sSlimeHurt;
 
 // enemy scripts
-enemyScript[ENEMYSTATE.WANDER] = SlimeWander;
-enemyScript[ENEMYSTATE.CHASE] = SlimeChase;
-enemyScript[ENEMYSTATE.ATTACK] = SlimeAttack;
-enemyScript[ENEMYSTATE.HURT] = SlimeHurt;
-enemyScript[ENEMYSTATE.DIE] = SlimeDie;
+unitScript[UNIT_STATE.WANDER] = SlimeWander;
+unitScript[UNIT_STATE.CHASE] = SlimeChase;
+unitScript[UNIT_STATE.ATTACK] = SlimeAttack;
+unitScript[UNIT_STATE.HURT] = SlimeHurt;
+unitScript[UNIT_STATE.DIE] = SlimeDie;

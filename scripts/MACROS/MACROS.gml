@@ -10,7 +10,7 @@
 #macro OUT 0
 #macro IN 1
 
-enum ENEMYSTATE
+enum UNIT_STATE
 {
 	IDLE,
 	WANDER,
