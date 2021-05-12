@@ -5,7 +5,7 @@ function SlimeWander()
 	sprite_index = sprMove;
 	
 	// at destination or given up?
-	if(((x == xTo) && (y == yTo)) || timePassedWandering > enemyWanderDistance / enemySpeed)
+	if(((x == xTo) && (y == yTo)) || timePassedWandering > wanderDistance / unitSpeed)
 	{
 		hSpeed = 0;
 		vSpeed = 0;
@@ -23,8 +23,8 @@ function SlimeWander()
 			timePassedBeforeWandering = 0;
 			timePassedWandering = 0;
 			dir = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
-			xTo = x + lengthdir_x(enemyWanderDistance, dir);
-			yTo = y + lengthdir_y(enemyWanderDistance, dir);
+			xTo = x + lengthdir_x(wanderDistance, dir);
+			yTo = y + lengthdir_y(wanderDistance, dir);
 		}
 	}
 	else // move towards new destination
@@ -32,8 +32,8 @@ function SlimeWander()
 		timePassedWandering++;
 		image_speed = 1.0;
 		var _distanceToGo = point_distance(x, y, xTo, yTo);
-		var _speedThisFrame = enemySpeed;
-		if(_distanceToGo < enemySpeed)
+		var _speedThisFrame = unitSpeed;
+		if(_distanceToGo < unitSpeed)
 		{
 			_speedThisFrame = _distanceToGo;
 		}
@@ -73,10 +73,10 @@ function SlimeChase()
 		var _distanceToGo = point_distance(x, y, xTo, yTo);
 		image_speed = 0.5;
 		dir = point_direction(x, y, xTo, yTo);
-		if(_distanceToGo > enemySpeed)
+		if(_distanceToGo > unitSpeed)
 		{
-			hSpeed = lengthdir_x(enemySpeed, dir);
-			vSpeed = lengthdir_y(enemySpeed, dir);
+			hSpeed = lengthdir_x(unitSpeed, dir);
+			vSpeed = lengthdir_y(unitSpeed, dir);
 		}
 		else
 		{
@@ -106,7 +106,7 @@ function SlimeChase()
 function SlimeAttack()
 {
 	// how fast to move
-	var _spd = enemySpeed;
+	var _spd = unitSpeed;
 	
 	// don't move while still getting ready to jump
 	if(image_index < 2)
@@ -165,12 +165,12 @@ function SlimeHurt()
 {
 	sprite_index = sprHurt;
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	if(_distanceToGo > enemySpeed)
+	if(_distanceToGo > unitSpeed)
 	{
 		image_speed = 1.0;
 		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(enemySpeed, dir);
-		vSpeed = lengthdir_y(enemySpeed, dir);
+		hSpeed = lengthdir_x(unitSpeed, dir);
+		vSpeed = lengthdir_y(unitSpeed, dir);
 		
 		if(hSpeed != 0)
 		{
@@ -204,11 +204,11 @@ function SlimeDie()
 	sprite_index = sprDie;
 	image_speed = 1.0;
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	if(_distanceToGo > enemySpeed)
+	if(_distanceToGo > unitSpeed)
 	{
 		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(enemySpeed, dir);
-		ySpeed = lengthdir_y(enemySpeed, dir);
+		hSpeed = lengthdir_x(unitSpeed, dir);
+		ySpeed = lengthdir_y(unitSpeed, dir);
 		if(hSpeed != 0)
 		{
 			image_xScale = -sign(hSpeed);

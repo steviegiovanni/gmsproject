@@ -11,11 +11,13 @@ vSpeed = 0;
 xTo = xstart;
 yTo = ystart;
 dir = 0;
+unitSpeed = 0.75;
 
 // wander around behavior parameters
 timePassedWandering = 0;
 waitTimeBeforeWandering = 60;
 timePassedBeforeWandering = 0;
+wanderDistance = 32;
 
 // unit waiting for cooldown parameters
 stateTarget = state;
