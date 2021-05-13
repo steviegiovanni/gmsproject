@@ -4,10 +4,10 @@ event_inherited();
 state = UNIT_STATE.WANDER;
 
 // enemy sprites
-sprMove = sSlime;
-sprAttack = sSlimeAttack;
-sprDie = sSlimeDie;
-sprHurt = sSlimeHurt;
+sprites[UNIT_SPRITE.MOVE] = sSlime;
+sprites[UNIT_SPRITE.ATTACK] = sSlimeAttack;
+sprites[UNIT_SPRITE.HURT] = sSlimeHurt;
+sprites[UNIT_SPRITE.DIE] = sSlimeDie;
 
 // enemy scripts
 unitScript[UNIT_STATE.WANDER] = SlimeWander;

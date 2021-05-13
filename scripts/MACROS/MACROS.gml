@@ -20,3 +20,12 @@ enum UNIT_STATE
 	DIE,
 	WAIT
 }
+
+enum UNIT_SPRITE
+{
+	IDLE,
+	MOVE,
+	ATTACK,
+	HURT,
+	DIE
+}

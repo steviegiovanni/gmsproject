@@ -3,8 +3,8 @@
 function PlayerStateFree()
 {
 	// movement
-	hSpeed = lengthdir_x(inputMagnitude * speedWalk, inputDirection);
-	vSpeed = lengthdir_y(inputMagnitude * speedWalk, inputDirection);
+	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
+	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
 
 	PlayerCollision();
 
@@ -13,11 +13,11 @@ function PlayerStateFree()
 	if(inputMagnitude != 0)
 	{
 		direction = inputDirection;
-		sprite_index = spriteRun;
+		sprite_index = sprites[UNIT_SPRITE.MOVE];
 	}
 	else
 	{
-		sprite_index = spriteIdle;
+		sprite_index = sprites[UNIT_SPRITE.IDLE];
 	}
 
 	if(_oldSprite != sprite_index)

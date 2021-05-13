@@ -2,7 +2,52 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function SlimeWander()
 {
-	UnitWander();
+	sprite_index = sprites[UNIT_SPRITE.MOVE];
+	
+	// at destination or given up?
+	if(((x == xTo) && (y == yTo)) || timePassedWandering > wanderDistance / unitSpeed)
+	{
+		hSpeed = 0;
+		vSpeed = 0;
+		
+		// end our move animation
+		if(image_index < 1)
+		{
+			image_speed = 0.0;
+			image_index = 0;
+		}
+		
+		// set new target destination
+		if(++timePassedBeforeWandering >= waitTimeBeforeWandering)
+		{
+			timePassedBeforeWandering = 0;
+			timePassedWandering = 0;
+			dir = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
+			xTo = x + lengthdir_x(wanderDistance, dir);
+			yTo = y + lengthdir_y(wanderDistance, dir);
+		}
+	}
+	else // move towards new destination
+	{
+		timePassedWandering++;
+		image_speed = 1.0;
+		var _distanceToGo = point_distance(x, y, xTo, yTo);
+		var _speedThisFrame = unitSpeed;
+		if(_distanceToGo < unitSpeed)
+		{
+			_speedThisFrame = _distanceToGo;
+		}
+		dir = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(_speedThisFrame, dir);
+		vSpeed = lengthdir_y(_speedThisFrame, dir);
+		if(hSpeed != 0)
+		{
+			image_xscale = sign(hSpeed);
+		}
+		
+		// collide and move
+		UnitTileCollision();
+	}
 	
 	// check for aggro
 	if(++aggroCheck >= aggroCheckDuration)
@@ -19,7 +64,7 @@ function SlimeWander()
 
 function SlimeChase()
 {
-	sprite_index = sprMove;
+	sprite_index = sprites[UNIT_SPRITE.MOVE];
 	if(instance_exists(target))
 	{
 		xTo = target.x;
@@ -48,7 +93,7 @@ function SlimeChase()
 	&& (point_distance(x, y, target.x, target.y) <= enemyAttackRadius))
 	{
 		state = UNIT_STATE.ATTACK;
-		sprite_index = sprAttack;
+		sprite_index = sprites[UNIT_SPRITE.ATTACK];
 		image_index = 0;
 		image_speed = 1.0;
 		
@@ -118,7 +163,7 @@ function SlimeAttack()
 
 function SlimeHurt()
 {
-	sprite_index = sprHurt;
+	sprite_index = sprites[UNIT_SPRITE.HURT];
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
 	if(_distanceToGo > unitSpeed)
 	{
@@ -156,7 +201,7 @@ function SlimeHurt()
 
 function SlimeDie()
 {
-	sprite_index = sprDie;
+	sprite_index = sprites[UNIT_SPRITE.DIE];
 	image_speed = 1.0;
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
 	if(_distanceToGo > unitSpeed)

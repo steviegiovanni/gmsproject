@@ -2,10 +2,12 @@
 randomize();
 global.gamePaused = false;
 global.textSpeed = .75;
+
+// room transition
 global.targetRoom = -1;
-global.targetX = -1;
-global.targetY = -1;
-global.targetDirection = 0;
+global.targetRoomStartX = -1;
+global.targetRoomStartY = -1;
+global.targetRoomStartDirection = 0;
 
 global.iCamera = instance_create_layer(0, 0, layer, oCamera);
 

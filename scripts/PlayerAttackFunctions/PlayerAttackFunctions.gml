@@ -1,10 +1,10 @@
 function AttackSlash()
 {
 	// attack just started
-	if(sprite_index != Sprite1_AttackSlash)
+	if(sprite_index != sprites[UNIT_SPRITE.ATTACK])
 	{
 		// set up correct animation
-		sprite_index = Sprite1_AttackSlash;
+		sprite_index = sprites[UNIT_SPRITE.ATTACK];
 		localFrame = 0;
 		image_index = 0;
 		

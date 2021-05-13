@@ -41,7 +41,6 @@ function NewTextBox(_message, _background, _responses)
 				var _markerPosition = string_pos(":", responses[i]);
 				responseScripts[i] = real(string_copy(responses[i], 1, _markerPosition - 1));
 				responses[i] = string_delete(responses[i], 1, _markerPosition);
-				breakpoint = 10;
 			}
 		}
 		else

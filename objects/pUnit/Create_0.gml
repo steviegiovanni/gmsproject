@@ -13,6 +13,9 @@ yTo = ystart;
 dir = 0;
 unitSpeed = 0.75;
 
+// sprite logic parameters
+localFrame = 0;
+
 // wander around behavior parameters
 timePassedWandering = 0;
 waitTimeBeforeWandering = 60;
@@ -26,7 +29,11 @@ stateWait = 0;
 stateWaitDuration = 0;
 
 // sprites
-sprMove = sSlime;
+sprites[UNIT_SPRITE.IDLE] = -1;
+sprites[UNIT_SPRITE.MOVE] = -1;
+sprites[UNIT_SPRITE.ATTACK] = -1;
+sprites[UNIT_SPRITE.HURT] = -1;
+sprites[UNIT_SPRITE.DIE] = -1;
 
 // unit scripts
 unitScript[UNIT_STATE.IDLE] = -1;
