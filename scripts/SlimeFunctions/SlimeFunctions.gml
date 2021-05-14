@@ -90,7 +90,7 @@ function SlimeChase()
 	
 	// check if close enough to launch an attack
 	if(instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= enemyAttackRadius))
+	&& (point_distance(x, y, target.x, target.y) <= attackRange))
 	{
 		state = UNIT_STATE.ATTACK;
 		sprite_index = sprites[UNIT_SPRITE.ATTACK];

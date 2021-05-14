@@ -64,7 +64,6 @@
     {"id":{"name":"UnitTileCollision","path":"scripts/UnitTileCollision/UnitTileCollision.yy",},"order":24,},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},"order":1,},
     {"id":{"name":"PlayerStateTransition","path":"scripts/PlayerStateTransition/PlayerStateTransition.yy",},"order":5,},
-    {"id":{"name":"oPlayer2","path":"objects/oPlayer2/oPlayer2.yy",},"order":17,},
     {"id":{"name":"pEnemy","path":"objects/pEnemy/pEnemy.yy",},"order":14,},
     {"id":{"name":"oTextQueued","path":"objects/oTextQueued/oTextQueued.yy",},"order":5,},
     {"id":{"name":"rParent","path":"rooms/rParent/rParent.yy",},"order":0,},

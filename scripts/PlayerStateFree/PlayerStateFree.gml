@@ -28,15 +28,30 @@ function PlayerStateFree()
 	// update image index
 	PlayerAnimateSprite();
 	
-	// attack key logic
-	if(keyAttack)
+	if(!instance_exists(target))
 	{
-		state = PlayerStateAttack;
+		var _potentialTarget = instance_nearest(x, y, pEnemy);
+		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRadius)
+		{
+			target = _potentialTarget;
+		} 
+	}
+	
+	if(instance_exists(target))
+	{
+		state = UNIT_STATE.ATTACK;
 		stateAttack = AttackSlash;
 	}
 	
+	// attack key logic
+	/*if(keyAttack)
+	{
+		state = PlayerStateAttack;
+		stateAttack = AttackSlash;
+	}*/
+	
 	// activate key logic
-	if(keyActivate)
+	/*if(keyActivate)
 	{
 		// 1. check for an entity to activate
 		// 2. if there is nothing, or there is something, but it has no script - roll
@@ -90,6 +105,5 @@ function PlayerStateFree()
 				}
 			}
 		}
-		
-	}
+	}*/
 }
