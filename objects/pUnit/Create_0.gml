@@ -3,7 +3,9 @@
 // Inherit the parent event
 event_inherited();
 
+// state management variables
 state = UNIT_STATE.IDLE;
+statePrevious = state;
 
 // movement parameters
 hSpeed = 0;
@@ -25,15 +27,11 @@ wanderDistance = 32;
 
 // auto attack parameters
 attackRange = 16;
+attackSpeed = 240;
+attackTime = attackSpeed;
 
 // targetting parameters
 target = noone;
-
-// unit waiting for cooldown parameters
-stateTarget = state;
-statePrevious = state;
-stateWait = 0;
-stateWaitDuration = 0;
 
 // sprites
 sprites[UNIT_SPRITE.IDLE] = -1;
@@ -49,4 +47,4 @@ unitScript[UNIT_STATE.CHASE] = -1;
 unitScript[UNIT_STATE.ATTACK] = -1;
 unitScript[UNIT_STATE.HURT] = -1;
 unitScript[UNIT_STATE.DIE] = -1;
-unitScript[UNIT_STATE.WAIT] = UnitWait;
+unitScript[UNIT_STATE.RESET] = -1;

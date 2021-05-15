@@ -23,10 +23,7 @@ function AttackSlash()
 	
 	if(animationEnd)
 	{
-		stateTarget = UNIT_STATE.IDLE;
-		stateWaitDuration = 100;
-		state = UNIT_STATE.WAIT;
-		//state =	UNIT_STATE.IDLE;
+		state = UNIT_STATE.IDLE;
 		animationEnd = false;
 	}
 }

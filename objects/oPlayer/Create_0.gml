@@ -28,7 +28,6 @@ unitScript[UNIT_STATE.CHASE] = -1;
 unitScript[UNIT_STATE.ATTACK] = PlayerStateAttack;
 unitScript[UNIT_STATE.HURT] = -1;
 unitScript[UNIT_STATE.DIE] = -1;
-unitScript[UNIT_STATE.WAIT] = UnitWait;
 
 if(global.targetRoomStartX != -1)
 {

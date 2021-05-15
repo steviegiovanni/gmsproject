@@ -1,5 +1,5 @@
 // Inherit the parent event
 event_inherited();
 
-aggroCheck = 0;
-aggroCheckDuration = 5;
+aggroResetRadius = 150;
+timePassedResetting = 0;

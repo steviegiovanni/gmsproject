@@ -28,19 +28,19 @@ function PlayerStateFree()
 	// update image index
 	PlayerAnimateSprite();
 	
-	if(!instance_exists(target))
+	/*if(!instance_exists(target))
 	{
 		var _potentialTarget = instance_nearest(x, y, pEnemy);
 		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRadius)
 		{
 			target = _potentialTarget;
 		} 
-	}
+	}*/
 	
-	if(instance_exists(target))
+	if(instance_exists(target) && point_distance(x, y, target.x, target.y) <= attackRadius)
 	{
-		state = UNIT_STATE.ATTACK;
-		stateAttack = AttackSlash;
+		//state = UNIT_STATE.ATTACK;
+		//stateAttack = AttackSlash;
 	}
 	
 	// attack key logic

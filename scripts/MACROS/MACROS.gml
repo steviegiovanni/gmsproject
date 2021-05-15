@@ -18,7 +18,7 @@ enum UNIT_STATE
 	ATTACK,
 	HURT,
 	DIE,
-	WAIT
+	RESET
 }
 
 enum UNIT_SPRITE
