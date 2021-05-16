@@ -5,7 +5,6 @@ event_inherited();
 
 // state management variables
 state = UNIT_STATE.IDLE;
-statePrevious = state;
 
 // movement parameters
 hSpeed = 0;

@@ -44,11 +44,11 @@ function PlayerStateFree()
 	}
 	
 	// attack key logic
-	/*if(keyAttack)
+	if(keyAttack)
 	{
-		state = PlayerStateAttack;
+		state = UNIT_STATE.ATTACK;
 		stateAttack = AttackSlash;
-	}*/
+	}
 	
 	// activate key logic
 	/*if(keyActivate)

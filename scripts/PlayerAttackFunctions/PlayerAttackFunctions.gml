@@ -79,10 +79,6 @@ function HurtEnemy(_enemy, _damage, _source, _knockback)
 			}
 			else
 			{
-				if(state != UNIT_STATE.HURT)
-				{
-					statePrevious = state;
-				}
 				state = UNIT_STATE.HURT;
 			}
 			

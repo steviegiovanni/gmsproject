@@ -223,14 +223,7 @@ function SlimeHurt()
 	{
 		x = xTo;
 		y = yTo;
-		if(statePrevious != UNIT_STATE.ATTACK)
-		{
-			state = statePrevious;
-		}
-		else
-		{
-			state = UNIT_STATE.CHASE;
-		}
+		state = UNIT_STATE.IDLE;
 	}
 }
 
