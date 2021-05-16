@@ -33,6 +33,14 @@ function SlimeIdle()
 	}
 	else
 	{
+		// look at target
+		dir = point_direction(x, y, target.x, target.y);
+		hSpeed = lengthdir_x(1, dir);
+		if(hSpeed != 0)
+		{
+			image_xscale = sign(hSpeed);
+		}
+		
 		// check if close enough to launch an attack
 		if(point_distance(x, y, target.x, target.y) <= attackRange)
 		{
@@ -42,11 +50,6 @@ function SlimeIdle()
 				sprite_index = sprites[UNIT_SPRITE.ATTACK];
 				image_index = 0;
 				image_speed = 1.0;
-		
-				// target 8px past the player
-				xTo += x;
-				yTo += y;
-			
 				state = UNIT_STATE.ATTACK;
 			}
 		}
@@ -157,11 +160,6 @@ function SlimeChase()
 			sprite_index = sprites[UNIT_SPRITE.ATTACK];
 			image_index = 0;
 			image_speed = 1.0;
-		
-			// target 8px past the player
-			xTo += x;
-			yTo += y;
-			
 			state = UNIT_STATE.ATTACK;
 		}
 		else
@@ -181,62 +179,20 @@ function SlimeChase()
 
 function SlimeAttack()
 {
-	// how fast to move
-	var _spd = unitSpeed;
-	
-	// don't move while still getting ready to jump
-	if(image_index < 2)
+	if(instance_exists(target))
 	{
-		_spd = 0;
-	}
-	
-	// freeze animation while in mid-air and also after landing finishes
-	if(floor(image_index) == 3)
-		|| (floor(image_index == 5))
-	{
-		image_speed = 0;
-	}
-	
-	// how far we have to jump
-	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	
-	// begin landing end of the animation once we're nearly done
-	if((_distanceToGo < 4) && (image_index < 5))
-	{
-		image_speed = 1.0;
-	}
-	
-	// move
-	if(_distanceToGo > _spd)
-	{
-		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(_spd, dir);
-		vSpeed = lengthdir_y(_spd, dir);
+		dir = point_direction(x, y, target.x, target.y);
+		hSpeed = lengthdir_x(1, dir);
 		if(hSpeed != 0)
 		{
 			image_xscale = sign(hSpeed);
 		}
-		
-		// commit to move and stop moving if we hit a wall
-		if(UnitTileCollision() == true)
-		{
-			xTo = x;
-			yTo = y;
-		}
 	}
-	else
+	
+	if(image_index > image_number -1)
 	{
-		x = xTo;
-		y = yTo;
-		if(floor(image_index) == 5)
-		{
-			/*stateTarget = UNIT_STATE.CHASE;
-			stateWait = 0;
-			stateWaitDuration = 240;
-			state = UNIT_STATE.WAIT;*/
-			state = UNIT_STATE.IDLE;
-			attackTime = 0;
-		}
+		state = UNIT_STATE.IDLE;
+		attackTime = 0;
 	}
 }
 
