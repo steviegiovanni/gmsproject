@@ -85,8 +85,8 @@ function PlayerStateFree()
 		
 		if(activate == noone)
 		{
-			state = PlayerStateRoll;
-			moveDistanceRemaining = distanceRoll;
+			//state = PlayerStateRoll;
+			//moveDistanceRemaining = distanceRoll;
 		}
 		else
 		{
@@ -266,13 +266,4 @@ function PlayerStateRoll()
 		moveDistanceRemaining = distanceBonk;
 		ScreenShake( 8, 30);
 	}
-}
-
-function PlayerStateTransition()
-{
-	// movement
-	//PlayerCollision();
-	
-	// update image index
-	//PlayerAnimateSprite();
 }
