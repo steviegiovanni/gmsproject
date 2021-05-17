@@ -1,7 +1,7 @@
 /// @description progress transition
 with(oPlayer)
 {
-	state = PlayerStateTransition;
+	//state = PlayerStateTransition;
 }
 
 if(leading == OUT)
@@ -18,7 +18,7 @@ else // leading == IN
 	percent = max(0, percent - TRANSITION_SPEED);
 	if(percent <= 0) // screen fully revealed
 	{
-		with(oPlayer) state = PlayerStateFree;
+		with(oPlayer) state = UNIT_STATE.IDLE;
 		instance_destroy();
 	}
 }

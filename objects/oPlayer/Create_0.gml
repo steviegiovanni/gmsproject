@@ -1,9 +1,7 @@
 event_inherited();
 
 state = UNIT_STATE.IDLE;
-stateAttack = AttackSlash;
 hitByAttack = -1;
-//lastState = state;
 
 unitSpeed = 2.0;
 speedRoll = 3.0;

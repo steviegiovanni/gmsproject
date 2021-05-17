@@ -39,9 +39,10 @@ if(oPlayer.keyActivate)
 		}
 		else
 		{
-			with(oPlayer)
+			with(pUnit)
 			{
 				state = lastState;
+				image_speed = gamePausedImageSpeed;
 			}
 		}
 	}

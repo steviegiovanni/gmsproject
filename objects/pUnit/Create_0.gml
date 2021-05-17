@@ -5,6 +5,7 @@ event_inherited();
 
 // state management variables
 state = UNIT_STATE.IDLE;
+lastState = state;
 
 // movement parameters
 hSpeed = 0;
@@ -47,3 +48,4 @@ unitScript[UNIT_STATE.ATTACK] = -1;
 unitScript[UNIT_STATE.HURT] = -1;
 unitScript[UNIT_STATE.DIE] = -1;
 unitScript[UNIT_STATE.RESET] = -1;
+unitScript[UNIT_STATE.LOCKED] = UnitLocked;

@@ -18,7 +18,8 @@ enum UNIT_STATE
 	ATTACK,
 	HURT,
 	DIE,
-	RESET
+	RESET,			// when enemies go back to their spawn positions
+	LOCKED
 }
 
 enum UNIT_SPRITE

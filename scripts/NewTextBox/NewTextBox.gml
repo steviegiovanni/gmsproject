@@ -50,12 +50,14 @@ function NewTextBox(_message, _background, _responses)
 		}
 	}
 	
-	with(oPlayer)
+	with(pUnit)
 	{
-		if(state != PlayerStateLocked)
+		if(state != UNIT_STATE.LOCKED)
 		{
 			lastState = state;
-			state = PlayerStateLocked;
+			gamePausedImageSpeed = image_speed;
+			image_speed = 0;
+			state = UNIT_STATE.LOCKED;
 		}
 	}
 }
