@@ -27,6 +27,34 @@ function AnimateSpriteSimple()
 }
 
 function UnitLocked()
+{}
+
+function DamageUnit(_unit, _damage, _source, _knockback)
 {
-	//image_speed = 0;
+	with(_unit)
+	{
+		if(state != UNIT_STATE.DIE)
+		{
+			hp -= _damage;
+			flash = 1;
+			
+			// hurt or dead?
+			if(hp <= 0)
+			{
+				state = UNIT_STATE.DIE;
+			}
+			else
+			{
+				state = UNIT_STATE.HURT;
+			}
+			
+			image_index = 0;
+			if(_knockback != 0)
+			{
+				var _knockDirection = point_direction(x, y, (_source).x, (_source).y);
+				xTo = x - lengthdir_x(_knockback, _knockDirection);
+				yTo = y - lengthdir_y(_knockback, _knockDirection);
+			}
+		}
+	}
 }

@@ -108,6 +108,12 @@ function PlayerStateFree()
 
 function PlayerStateAttack()
 {
+	// movement
+	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
+	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
+	
+	PlayerCollision();
+	
 	// attack just started
 	if(sprite_index != sprites[UNIT_SPRITE.ATTACK])
 	{
@@ -156,7 +162,7 @@ function CalcAttack(_HBSprite)
 				{
 					if(object_is_ancestor(object_index, pEnemy))
 					{
-						HurtEnemy(id, 5, other.id, 10);
+						DamageUnit(id, 5, other.id, 10);
 					}
 					else if(entityHitScript != -1)
 					{
@@ -169,36 +175,6 @@ function CalcAttack(_HBSprite)
 	
 	ds_list_destroy(_hitByAttackNow);
 	mask_index = Sprite1;
-}
-
-function HurtEnemy(_enemy, _damage, _source, _knockback)
-{
-	with(_enemy)
-	{
-		if(state != UNIT_STATE.DIE)
-		{
-			enemyHP -= _damage;
-			flash = 1;
-			
-			// hurt or dead?
-			if(enemyHP <= 0)
-			{
-				state = UNIT_STATE.DIE;
-			}
-			else
-			{
-				state = UNIT_STATE.HURT;
-			}
-			
-			image_index = 0;
-			if(_knockback != 0)
-			{
-				var _knockDirection = point_direction(x, y, (_source).x, (_source).y);
-				xTo = x - lengthdir_x(_knockback, _knockDirection);
-				yTo = y - lengthdir_y(_knockback, _knockDirection);
-			}
-		}
-	}
 }
 
 function PlayerStateBonk(){

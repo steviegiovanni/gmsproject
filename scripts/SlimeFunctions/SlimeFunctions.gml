@@ -10,7 +10,7 @@ function SlimeIdle()
 	{
 		// there's no target, try to find one
 		if(instance_exists(oPlayer)
-		&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= enemyAggroRadius))
+		&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= aggroRadius))
 		{
 			// there's a player in the aggro radius
 			target = oPlayer;
@@ -55,7 +55,7 @@ function SlimeIdle()
 		}
 		
 		// reset if too far from the target
-		if(point_distance(x, y, target.x, target.y) >= aggroResetRadius)
+		if(point_distance(x, y, target.x, target.y) >= aggroLostRadius)
 		{
 			target = noone;
 			state = UNIT_STATE.RESET;
@@ -106,7 +106,7 @@ function SlimeWander()
 	
 	// check for aggro while wandering
 	if(instance_exists(oPlayer)
-	&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= enemyAggroRadius))
+	&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= aggroRadius))
 	{
 		target = oPlayer;
 		if(!instance_exists(oPlayer.target))
@@ -164,7 +164,7 @@ function SlimeChase()
 	
 	// reset if too far from the target
 	if(instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) >= aggroResetRadius))
+	&& (point_distance(x, y, target.x, target.y) >= aggroLostRadius))
 	{
 		target = noone;
 		state = UNIT_STATE.RESET;
@@ -248,7 +248,7 @@ function SlimeReset()
 	
 	// back at the start or given up?
 	if(((x == xstart) && (y == ystart))
-	|| (timePassedResetting > aggroResetRadius / unitSpeed))
+	|| (timePassedResetting > aggroLostRadius / unitSpeed))
 	{
 		x = xstart;
 		y = ystart;

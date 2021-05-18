@@ -7,6 +7,9 @@ event_inherited();
 state = UNIT_STATE.IDLE;
 lastState = state;
 
+// stats
+hp = 50;
+
 // movement parameters
 hSpeed = 0;
 vSpeed = 0;
@@ -23,6 +26,10 @@ timePassedWandering = 0;
 waitTimeBeforeWandering = 60;
 timePassedBeforeWandering = 0;
 wanderDistance = 32;
+
+// aggro parameters
+aggroRadius = 40;
+aggroLostRadius = 150;
 
 // auto attack parameters
 attackRange = 16;
