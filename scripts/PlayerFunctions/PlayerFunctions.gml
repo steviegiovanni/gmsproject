@@ -24,7 +24,7 @@ function PlayerStateFree()
 	}
 
 	// update image index
-	PlayerAnimateSprite();
+	AnimateSprite4Dir();
 	
 	/*if(!instance_exists(target))
 	{
@@ -127,13 +127,12 @@ function PlayerStateAttack()
 	CalcAttack(sPlayerAttackSlashHB);
 	
 	// update sprite
-	PlayerAnimateSprite();
+	var _animationEnd = AnimateSprite4Dir();
 	
-	if(animationEnd)
+	if(_animationEnd)
 	{
 		attackTime = 0;
 		state = UNIT_STATE.IDLE;
-		animationEnd = false;
 	}
 }
 

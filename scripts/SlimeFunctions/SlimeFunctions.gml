@@ -25,21 +25,17 @@ function SlimeIdle()
 			// there's no player in the aggro radius, go to wander around mode
 			timePassedBeforeWandering = 0;
 			timePassedWandering = 0;
-			dir = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
-			xTo = x + lengthdir_x(wanderDistance, dir);
-			yTo = y + lengthdir_y(wanderDistance, dir);
+			direction = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
+			xTo = x + lengthdir_x(wanderDistance, direction);
+			yTo = y + lengthdir_y(wanderDistance, direction);
 			state = UNIT_STATE.WANDER;
 		}
 	}
 	else
 	{
 		// look at target
-		dir = point_direction(x, y, target.x, target.y);
-		hSpeed = lengthdir_x(1, dir);
-		if(hSpeed != 0)
-		{
-			image_xscale = sign(hSpeed);
-		}
+		direction = point_direction(x, y, target.x, target.y);
+		AnimateSpriteSimple();
 		
 		// check if close enough to launch an attack
 		if(point_distance(x, y, target.x, target.y) <= attackRange)
@@ -99,13 +95,10 @@ function SlimeWander()
 		{
 			_speedThisFrame = _distanceToGo;
 		}
-		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(_speedThisFrame, dir);
-		vSpeed = lengthdir_y(_speedThisFrame, dir);
-		if(hSpeed != 0)
-		{
-			image_xscale = sign(hSpeed);
-		}
+		direction = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(_speedThisFrame, direction);
+		vSpeed = lengthdir_y(_speedThisFrame, direction);
+		AnimateSpriteSimple();
 		
 		// collide and move
 		UnitTileCollision();
@@ -134,18 +127,19 @@ function SlimeChase()
 		
 		var _distanceToGo = point_distance(x, y, xTo, yTo);
 		image_speed = 1.0;
-		dir = point_direction(x, y, xTo, yTo);
+		direction = point_direction(x, y, xTo, yTo);
 		if(_distanceToGo > unitSpeed)
 		{
-			hSpeed = lengthdir_x(unitSpeed, dir);
-			vSpeed = lengthdir_y(unitSpeed, dir);
+			hSpeed = lengthdir_x(unitSpeed, direction);
+			vSpeed = lengthdir_y(unitSpeed, direction);
 		}
 		else
 		{
-			hSpeed = lengthdir_x(_distanceToGo, dir);
-			vSpeed = lengthdir_y(_distanceToGo, dir);
+			hSpeed = lengthdir_x(_distanceToGo, direction);
+			vSpeed = lengthdir_y(_distanceToGo, direction);
 		}
-		if(hSpeed != 0) image_xscale = sign(hSpeed);
+		AnimateSpriteSimple();
+		
 		// collide and move
 		UnitTileCollision();
 	}
@@ -181,12 +175,8 @@ function SlimeAttack()
 {
 	if(instance_exists(target))
 	{
-		dir = point_direction(x, y, target.x, target.y);
-		hSpeed = lengthdir_x(1, dir);
-		if(hSpeed != 0)
-		{
-			image_xscale = sign(hSpeed);
-		}
+		direction = point_direction(x, y, target.x, target.y);
+		AnimateSpriteSimple();
 	}
 	
 	if(image_index > image_number -1)
@@ -203,14 +193,11 @@ function SlimeHurt()
 	if(_distanceToGo > unitSpeed)
 	{
 		image_speed = 1.0;
-		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(unitSpeed, dir);
-		vSpeed = lengthdir_y(unitSpeed, dir);
+		var _dir = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(unitSpeed, _dir);
+		vSpeed = lengthdir_y(unitSpeed, _dir);
 		
-		if(hSpeed != 0)
-		{
-			image_xscale = -sign(hSpeed);
-		}
+		AnimateSpriteSimple();
 		
 		// collide and move, if there's a collision, then stop knockback
 		if(UnitTileCollision())
@@ -234,13 +221,10 @@ function SlimeDie()
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
 	if(_distanceToGo > unitSpeed)
 	{
-		dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(unitSpeed, dir);
-		vSpeed = lengthdir_y(unitSpeed, dir);
-		if(hSpeed != 0)
-		{
-			image_xscale = -sign(hSpeed);
-		}
+		var _dir = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(unitSpeed, _dir);
+		vSpeed = lengthdir_y(unitSpeed, _dir);
+		AnimateSpriteSimple();
 		
 		// collide and move
 		UnitTileCollision();
@@ -291,13 +275,10 @@ function SlimeReset()
 		{
 			_speedThisFrame = _distanceToGo;
 		}
-		dir = point_direction(x, y, xstart, ystart);
-		hSpeed = lengthdir_x(_speedThisFrame, dir);
-		vSpeed = lengthdir_y(_speedThisFrame, dir);
-		if(hSpeed != 0)
-		{
-			image_xscale = sign(hSpeed);
-		}
+		direction = point_direction(x, y, xstart, ystart);
+		hSpeed = lengthdir_x(_speedThisFrame, direction);
+		vSpeed = lengthdir_y(_speedThisFrame, direction);
+		AnimateSpriteSimple();
 		
 		// collide and move
 		UnitTileCollision();

@@ -1,4 +1,4 @@
-function PlayerAnimateSprite()
+function AnimateSprite4Dir()
 {
 	// update sprite
 	var _totalFrames = sprite_get_number(sprite_index) / 4;
@@ -8,12 +8,21 @@ function PlayerAnimateSprite()
 	// if animation would loop on next game step
 	if(localFrame >= _totalFrames)
 	{
-		animationEnd = true;
 		localFrame -= _totalFrames;
+		return true;
 	}
 	else
 	{
-		animationEnd = false;
+		return false;
+	}
+}
+
+function AnimateSpriteSimple()
+{
+	var _dir = lengthdir_x(1, direction);
+	if(_dir != 0)
+	{
+		image_xscale = sign(_dir);
 	}
 }
 
