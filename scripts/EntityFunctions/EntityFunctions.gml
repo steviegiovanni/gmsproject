@@ -4,3 +4,17 @@ function EntityHitDestroy()
 {
 	instance_destroy();
 }
+
+function EntityHitSolid()
+{
+	flash = 0.5;
+}
+
+function ResetSpawner()
+{
+	if(instance_exists(spawner))
+	{
+		spawner.canSpawn = true;
+		spawner.spawnTimer = 0;
+	}
+}
