@@ -22,7 +22,7 @@ z = 0;
 localFrame = 0;
 
 // wander around behavior parameters
-timePassedWandering = 0;
+timePassedMoving = 0;
 waitTimeBeforeWandering = 60;
 timePassedBeforeWandering = 0;
 wanderDistance = 32;

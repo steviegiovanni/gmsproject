@@ -28,7 +28,7 @@
     "path": "folders/Objects.yy",
   },
   "resourceVersion": "1.0",
-  "name": "pEnemy",
+  "name": "oAlly",
   "tags": [],
   "resourceType": "GMObject",
 }

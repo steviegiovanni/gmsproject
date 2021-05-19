@@ -57,6 +57,7 @@
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},"order":1,},
     {"id":{"name":"pEnemy","path":"objects/pEnemy/pEnemy.yy",},"order":14,},
     {"id":{"name":"oTextQueued","path":"objects/oTextQueued/oTextQueued.yy",},"order":5,},
+    {"id":{"name":"oAlly","path":"objects/oAlly/oAlly.yy",},"order":18,},
     {"id":{"name":"rParent","path":"rooms/rParent/rParent.yy",},"order":0,},
   ],
   "Options": [

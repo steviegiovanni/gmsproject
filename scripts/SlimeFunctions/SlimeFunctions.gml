@@ -24,7 +24,7 @@ function SlimeIdle()
 		{
 			// there's no player in the aggro radius, go to wander around mode
 			timePassedBeforeWandering = 0;
-			timePassedWandering = 0;
+			timePassedMoving = 0;
 			direction = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
 			xTo = x + lengthdir_x(wanderDistance, direction);
 			yTo = y + lengthdir_y(wanderDistance, direction);
@@ -58,6 +58,7 @@ function SlimeIdle()
 		if(point_distance(x, y, target.x, target.y) >= aggroLostRadius)
 		{
 			target = noone;
+			timePassedMoving = 0;
 			state = UNIT_STATE.RESET;
 		}
 	}
@@ -69,7 +70,7 @@ function SlimeWander()
 	
 	// at destination or given up?
 	if(((x == xTo) && (y == yTo))
-	|| (timePassedWandering > wanderDistance / unitSpeed))
+	|| (timePassedMoving > wanderDistance / unitSpeed))
 	{
 		hSpeed = 0;
 		vSpeed = 0;
@@ -82,12 +83,12 @@ function SlimeWander()
 		}
 		
 		timePassedBeforeWandering = 0;
-		timePassedWandering = 0;
+		timePassedMoving = 0;
 		state = UNIT_STATE.IDLE;
 	}
 	else // move towards new destination
 	{
-		timePassedWandering++;
+		timePassedMoving++;
 		image_speed = 1.0;
 		var _distanceToGo = point_distance(x, y, xTo, yTo);
 		var _speedThisFrame = unitSpeed;
@@ -167,6 +168,7 @@ function SlimeChase()
 	&& (point_distance(x, y, target.x, target.y) >= aggroLostRadius))
 	{
 		target = noone;
+		timePassedMoving = 0;
 		state = UNIT_STATE.RESET;
 	}
 }
@@ -248,7 +250,7 @@ function SlimeReset()
 	
 	// back at the start or given up?
 	if(((x == xstart) && (y == ystart))
-	|| (timePassedResetting > aggroLostRadius / unitSpeed))
+	|| (timePassedMoving > aggroLostRadius / unitSpeed))
 	{
 		x = xstart;
 		y = ystart;
@@ -262,12 +264,12 @@ function SlimeReset()
 			image_index = 0;
 		}
 		
-		timePassedResetting = 0;
+		timePassedMoving = 0;
 		state = UNIT_STATE.WANDER;
 	}
 	else // move towards the start
 	{
-		timePassedResetting++;
+		timePassedMoving++;
 		image_speed = 1.0;
 		var _distanceToGo = point_distance(x, y, xstart, ystart);
 		var _speedThisFrame = unitSpeed;
