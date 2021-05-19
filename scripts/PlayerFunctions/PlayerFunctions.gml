@@ -4,7 +4,7 @@ function PlayerStateFree()
 	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
 	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
 
-	PlayerCollision();
+	UnitCollision();
 
 	// update sprite index
 	var _oldSprite = sprite_index;
@@ -112,7 +112,7 @@ function PlayerStateAttack()
 	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
 	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
 	
-	PlayerCollision();
+	UnitCollision();
 	
 	// attack just started
 	if(sprite_index != sprites[UNIT_SPRITE.ATTACK])
@@ -183,7 +183,7 @@ function PlayerStateBonk(){
 	vSpeed = lengthdir_y(speedBonk, direction - 180);
 	
 	moveDistanceRemaining = max(0, moveDistanceRemaining - speedBonk);
-	var _collided = PlayerCollision();
+	var _collided = UnitCollision();
 	
 	// update sprite
 	sprite_index = Sprite1_Hurt;
@@ -225,7 +225,7 @@ function PlayerStateRoll()
 	vSpeed = lengthdir_y(speedRoll, direction);
 	
 	moveDistanceRemaining = max(0, moveDistanceRemaining - speedRoll);
-	var _collided = PlayerCollision();
+	var _collided = UnitCollision();
 	
 	// update sprite
 	sprite_index = spriteRoll;

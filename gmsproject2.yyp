@@ -1,6 +1,5 @@
 {
   "resources": [
-    {"id":{"name":"PlayerCollision","path":"scripts/PlayerCollision/PlayerCollision.yy",},"order":2,},
     {"id":{"name":"oPlant","path":"objects/oPlant/oPlant.yy",},"order":3,},
     {"id":{"name":"oQuestNPC","path":"objects/oQuestNPC/oQuestNPC.yy",},"order":1,},
     {"id":{"name":"rRiver","path":"rooms/rRiver/rRiver.yy",},"order":4,},
@@ -55,7 +54,6 @@
     {"id":{"name":"DialogueResponses","path":"scripts/DialogueResponses/DialogueResponses.yy",},"order":7,},
     {"id":{"name":"sPlayerAttackSlashHB","path":"sprites/sPlayerAttackSlashHB/sPlayerAttackSlashHB.yy",},"order":11,},
     {"id":{"name":"NewTextBox","path":"scripts/NewTextBox/NewTextBox.yy",},"order":5,},
-    {"id":{"name":"UnitTileCollision","path":"scripts/UnitTileCollision/UnitTileCollision.yy",},"order":14,},
     {"id":{"name":"oGame","path":"objects/oGame/oGame.yy",},"order":1,},
     {"id":{"name":"pEnemy","path":"objects/pEnemy/pEnemy.yy",},"order":14,},
     {"id":{"name":"oTextQueued","path":"objects/oTextQueued/oTextQueued.yy",},"order":5,},

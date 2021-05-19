@@ -101,7 +101,7 @@ function SlimeWander()
 		AnimateSpriteSimple();
 		
 		// collide and move
-		UnitTileCollision();
+		UnitCollision();
 	}
 	
 	// check for aggro while wandering
@@ -141,7 +141,7 @@ function SlimeChase()
 		AnimateSpriteSimple();
 		
 		// collide and move
-		UnitTileCollision();
+		UnitCollision();
 	}
 	
 	// check if close enough to launch an attack
@@ -200,7 +200,7 @@ function SlimeHurt()
 		AnimateSpriteSimple();
 		
 		// collide and move, if there's a collision, then stop knockback
-		if(UnitTileCollision())
+		if(UnitCollision())
 		{
 			xTo = x;
 			yTo = y;
@@ -227,7 +227,7 @@ function SlimeDie()
 		AnimateSpriteSimple();
 		
 		// collide and move
-		UnitTileCollision();
+		UnitCollision();
 	}
 	else
 	{
@@ -281,6 +281,6 @@ function SlimeReset()
 		AnimateSpriteSimple();
 		
 		// collide and move
-		UnitTileCollision();
+		UnitCollision();
 	}
 }
