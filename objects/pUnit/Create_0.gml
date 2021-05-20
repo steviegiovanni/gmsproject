@@ -40,11 +40,11 @@ attackTime = attackSpeed;
 target = noone;
 
 // sprites
-sprites[UNIT_SPRITE.IDLE] = -1;
-sprites[UNIT_SPRITE.MOVE] = -1;
-sprites[UNIT_SPRITE.ATTACK] = -1;
-sprites[UNIT_SPRITE.HURT] = -1;
-sprites[UNIT_SPRITE.DIE] = -1;
+sprites[UNIT_SPRITE.IDLE] = sSlime;
+sprites[UNIT_SPRITE.MOVE] = sSlime;
+sprites[UNIT_SPRITE.ATTACK] = sSlime;
+sprites[UNIT_SPRITE.HURT] = sSlime;
+sprites[UNIT_SPRITE.DIE] = sSlime;
 
 // unit scripts
 unitScript[UNIT_STATE.IDLE] = -1;
