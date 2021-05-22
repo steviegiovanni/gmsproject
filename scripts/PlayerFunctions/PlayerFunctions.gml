@@ -26,14 +26,14 @@ function PlayerStateFree()
 	// update image index
 	AnimateSprite4Dir();
 	
-	/*if(!instance_exists(target))
+	if(!instance_exists(target))
 	{
 		var _potentialTarget = instance_nearest(x, y, pEnemy);
 		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRadius)
 		{
 			target = _potentialTarget;
 		} 
-	}*/
+	}
 	
 	if(instance_exists(target)
 	&& (point_distance(x, y, target.x, target.y) <= attackRadius)

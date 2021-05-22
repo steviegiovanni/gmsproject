@@ -11,8 +11,8 @@
   },
   "persistent": false,
   "parentObjectId": {
-    "name": "pUnit",
-    "path": "objects/pUnit/pUnit.yy",
+    "name": "pAlly",
+    "path": "objects/pAlly/pAlly.yy",
   },
   "physicsObject": false,
   "physicsSensor": false,

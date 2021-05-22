@@ -14,10 +14,6 @@ function SlimeIdle()
 		{
 			// there's a player in the aggro radius
 			target = oPlayer;
-			if(!instance_exists(oPlayer.target))
-			{
-				oPlayer.target = id;
-			}
 			state = UNIT_STATE.CHASE;
 		}
 		else if(++timePassedBeforeWandering >= waitTimeBeforeWandering)
@@ -110,10 +106,6 @@ function SlimeWander()
 	&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= aggroRadius))
 	{
 		target = oPlayer;
-		if(!instance_exists(oPlayer.target))
-		{
-			oPlayer.target = id;
-		}
 		state = UNIT_STATE.CHASE;
 	}
 }

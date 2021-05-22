@@ -3,6 +3,9 @@
 // Inherit the parent event
 event_inherited();
 
+// threat table
+threatTable = ds_map_create();
+
 // state management variables
 state = UNIT_STATE.IDLE;
 lastState = state;
