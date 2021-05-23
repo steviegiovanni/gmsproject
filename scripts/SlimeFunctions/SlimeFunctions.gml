@@ -6,57 +6,53 @@ function SlimeIdle()
 	image_index = 0;
 	image_speed = 0;
 	
-	if(!instance_exists(target))
+	// if there's no threat, we want to wander around
+	if((ds_map_size(threatTable) <= 0) && (++timePassedBeforeWandering >= waitTimeBeforeWandering))
 	{
-		// there's no target, try to find one
-		if(instance_exists(oPlayer)
-		&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= aggroRadius))
-		{
-			// there's a player in the aggro radius
-			target = oPlayer;
-			state = UNIT_STATE.CHASE;
-		}
-		else if(++timePassedBeforeWandering >= waitTimeBeforeWandering)
-		{
-			// there's no player in the aggro radius, go to wander around mode
-			timePassedBeforeWandering = 0;
-			timePassedMoving = 0;
-			direction = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
-			xTo = x + lengthdir_x(wanderDistance, direction);
-			yTo = y + lengthdir_y(wanderDistance, direction);
-			state = UNIT_STATE.WANDER;
-		}
+		timePassedBeforeWandering = 0;
+		timePassedMoving = 0;
+		direction = point_direction(x, y, xstart, ystart) + irandom_range(-45, 45);
+		xTo = x + lengthdir_x(wanderDistance, direction);
+		yTo = y + lengthdir_y(wanderDistance, direction);
+		state = UNIT_STATE.WANDER;
+		return;
 	}
-	else
+	
+	// if there's threat, latch onto the highest enmity unit by default 
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTable();
+	target = _highestEnmityUnit;
+	if(instance_exists(target) && (point_distance(x, y, target.x, target.y) > attackRange))
 	{
-		// look at target
-		direction = point_direction(x, y, target.x, target.y);
-		AnimateSpriteSimple();
-		
-		// check if close enough to launch an attack
+		chaseStopRadius = attackRange;
+		chaseState = UNIT_STATE.IDLE;
+		state = UNIT_STATE.CHASE;
+	}
+	
+	// if auto attack is not on cooldown, overwrite the action to auto attack
+	if((attackTime >= attackSpeed) && instance_exists(_highestEnmityUnit))
+	{
+		target = _highestEnmityUnit;
 		if(point_distance(x, y, target.x, target.y) <= attackRange)
 		{
-			if(attackTime >= attackSpeed)
-			{
-				attackTime = 0;
-				sprite_index = sprites[UNIT_SPRITE.ATTACK];
-				image_index = 0;
-				image_speed = 1.0;
-				state = UNIT_STATE.ATTACK;
-			}
+			attackTime = 0;
+			sprite_index = sprites[UNIT_SPRITE.ATTACK];
+			image_index = 0;
+			image_speed = 1.0;
+			state = UNIT_STATE.ATTACK;
 		}
 		else
 		{
+			chaseStopRadius = attackRange;
+			chaseState = UNIT_STATE.ATTACK;
 			state = UNIT_STATE.CHASE;
 		}
-		
-		// reset if too far from the target
-		if(point_distance(x, y, target.x, target.y) >= aggroLostRadius)
-		{
-			target = noone;
-			timePassedMoving = 0;
-			state = UNIT_STATE.RESET;
-		}
+	}
+	
+	// look at target if exists
+	if(instance_exists(target))
+	{
+		direction = point_direction(x, y, target.x, target.y);
+		AnimateSpriteSimple();
 	}
 }
 
@@ -64,9 +60,10 @@ function SlimeWander()
 {
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
 	
-	// at destination or given up?
+	// at destination or given up, or threat table has values now
 	if(((x == xTo) && (y == yTo))
-	|| (timePassedMoving > wanderDistance / unitSpeed))
+	|| (timePassedMoving > wanderDistance / unitSpeed)
+	|| (ds_map_size(threatTable) > 0))
 	{
 		hSpeed = 0;
 		vSpeed = 0;
@@ -100,69 +97,59 @@ function SlimeWander()
 		// collide and move
 		UnitCollision();
 	}
-	
-	// check for aggro while wandering
-	if(instance_exists(oPlayer)
-	&& (point_distance(x, y, oPlayer.x, oPlayer.y) <= aggroRadius))
-	{
-		target = oPlayer;
-		state = UNIT_STATE.CHASE;
-	}
 }
 
 function SlimeChase()
 {
-	sprite_index = sprites[UNIT_SPRITE.MOVE];
-	if(instance_exists(target))
-	{
-		xTo = target.x;
-		yTo = target.y;
-		
-		var _distanceToGo = point_distance(x, y, xTo, yTo);
-		image_speed = 1.0;
-		direction = point_direction(x, y, xTo, yTo);
-		if(_distanceToGo > unitSpeed)
-		{
-			hSpeed = lengthdir_x(unitSpeed, direction);
-			vSpeed = lengthdir_y(unitSpeed, direction);
-		}
-		else
-		{
-			hSpeed = lengthdir_x(_distanceToGo, direction);
-			vSpeed = lengthdir_y(_distanceToGo, direction);
-		}
-		AnimateSpriteSimple();
-		
-		// collide and move
-		UnitCollision();
-	}
-	
-	// check if close enough to launch an attack
-	if(instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= attackRange))
-	{
-		if(attackTime >= attackSpeed)
-		{
-			attackTime = 0;
-			sprite_index = sprites[UNIT_SPRITE.ATTACK];
-			image_index = 0;
-			image_speed = 1.0;
-			state = UNIT_STATE.ATTACK;
-		}
-		else
-		{
-			state = UNIT_STATE.IDLE;
-		}
-	}
-	
-	// reset if too far from the target
-	if(instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) >= aggroLostRadius))
+	// if our target is not valid, stop chasing and reset
+	if(!instance_exists(target))
 	{
 		target = noone;
 		timePassedMoving = 0;
 		state = UNIT_STATE.RESET;
+		return;
 	}
+	
+	// special reset case, unit is chasing to attack OR doing default latch on but the unit to follow is super far
+	if(((chaseState == UNIT_STATE.ATTACK) || (chaseState == UNIT_STATE.IDLE))
+	&& (point_distance(x, y, target.x, target.y) > aggroLostRadius))
+	{
+		target = noone;
+		timePassedMoving = 0;
+		state = UNIT_STATE.RESET;
+		return;
+	}
+	
+	// if we have reach the desired distance, update the state to the previously set chaseState
+	if(point_distance(x, y, target.x, target.y) <= chaseStopRadius)
+	{
+		state = chaseState;
+		return;
+	}
+	
+	sprite_index = sprites[UNIT_SPRITE.MOVE];
+
+	// configure movement speed while chasing
+	xTo = target.x;
+	yTo = target.y;
+		
+	var _distanceToGo = point_distance(x, y, xTo, yTo);
+	image_speed = 1.0;
+	direction = point_direction(x, y, xTo, yTo);
+	if(_distanceToGo > unitSpeed)
+	{
+		hSpeed = lengthdir_x(unitSpeed, direction);
+		vSpeed = lengthdir_y(unitSpeed, direction);
+	}
+	else
+	{
+		hSpeed = lengthdir_x(_distanceToGo, direction);
+		vSpeed = lengthdir_y(_distanceToGo, direction);
+	}
+	AnimateSpriteSimple();
+		
+	// collide and move
+	UnitCollision();
 }
 
 function SlimeAttack()

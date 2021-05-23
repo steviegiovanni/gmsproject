@@ -5,10 +5,16 @@ event_inherited();
 
 // threat table
 threatTable = ds_map_create();
+threatTableUpdateRate = 5;
+threatTableUpdateTimer = threatTableUpdateRate;
 
 // state management variables
 state = UNIT_STATE.IDLE;
 lastState = state;
+
+// chase parameters
+chaseState = state;
+chaseStopRadius = 0;
 
 // stats
 hp = 50;
@@ -32,7 +38,7 @@ wanderDistance = 32;
 
 // aggro parameters
 aggroRadius = 40;
-aggroLostRadius = 150;
+aggroLostRadius = 100;
 
 // auto attack parameters
 attackRange = 16;

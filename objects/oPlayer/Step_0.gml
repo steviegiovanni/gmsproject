@@ -12,25 +12,4 @@ keyItem = keyboard_check_pressed(vk_control);
 inputDirection = point_direction(0,0,keyRight-keyLeft,keyDown-keyUp);
 inputMagnitude = (keyRight - keyLeft != 0) || (keyDown - keyUp != 0);
 
-with(pEnemy)
-{
-	ds_map_replace(other.threatTable, id, 5);
-}
-
-var it = ds_map_find_first(threatTable);
-while(!is_undefined(it))
-{
-	var _currentId = it;
-	it = ds_map_find_next(threatTable, it);
-	if(!instance_exists(_currentId))
-	{
-		ds_map_delete(threatTable, _currentId);
-	}
-	
-}
-for(var i = ds_map_find_first(threatTable); !is_undefined(i); i = ds_map_find_next(threatTable, i))
-{
-	show_debug_message(string(i) + ":" + string(threatTable[? i]));
-}
-
 event_inherited();

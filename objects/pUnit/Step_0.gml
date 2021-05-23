@@ -1,8 +1,22 @@
 /// @description execute state machine
 if(!global.gamePaused)
 {
-	// generic step
-	attackTime++;
+	// update cooldowns
+	++attackTime;
+	
+	// clean threat table
+	var it = ds_map_find_first(threatTable);
+	while(!is_undefined(it))
+	{
+		var _unit = it;
+		it = ds_map_find_next(threatTable, it);
+		if(!instance_exists(_unit)
+		|| (_unit.state == UNIT_STATE.DIE)
+		|| (point_distance(x, y, _unit.x, _unit.y) >= aggroLostRadius))
+		{
+			ds_map_delete(threatTable, _unit);
+		}
+	}
 	
 	if(unitScript[state] != -1)
 	{

@@ -35,9 +35,9 @@ function PlayerStateFree()
 		} 
 	}
 	
-	if(instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= attackRadius)
-	&& (attackTime >= attackSpeed))
+	if((attackTime >= attackSpeed)
+	&& instance_exists(target)
+	&& (point_distance(x, y, target.x, target.y) <= attackRadius))
 	{
 		state = UNIT_STATE.ATTACK;
 	}

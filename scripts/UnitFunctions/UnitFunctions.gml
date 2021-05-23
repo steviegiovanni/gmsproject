@@ -147,3 +147,41 @@ function DamageUnit(_unit, _damage, _source, _knockback)
 		}
 	}
 }
+
+function GetClosestUnitFromThreatTable()
+{
+	var _closestUnit = noone;
+	var _closestDistance = 9999;
+	var _unit = ds_map_find_first(threatTable);
+	while(!is_undefined(_unit))
+	{
+		if(instance_exists(_unit) && (_unit.state != UNIT_STATE.DIE))
+		{
+			var _distance = point_distance(x, y, _unit.x, _unit.y); 
+			if((_distance < aggroLostRadius) && (_distance < _closestDistance))
+			{
+				_closestUnit = _unit;
+				_closestDistance = _distance;
+			}
+		}
+		_unit = ds_map_find_next(threatTable, _unit);
+	}
+	return _closestUnit;
+}
+
+function GetHighestEnmityUnitFromThreatTable()
+{
+	var _highestEnmityUnit = noone;
+	var _highestEnmity = 0;
+	var _unit = ds_map_find_first(threatTable);
+	while(!is_undefined(_unit))
+	{
+		if(instance_exists(_unit) && (_unit.state != UNIT_STATE.DIE) && (threatTable[? _unit] > _highestEnmity))
+		{
+			_highestEnmity = threatTable[? _unit];
+			_highestEnmityUnit = _unit;
+		}
+		_unit = ds_map_find_next(threatTable, _unit);
+	}
+	return _highestEnmityUnit;
+}
