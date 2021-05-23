@@ -13,10 +13,10 @@ sprites[UNIT_SPRITE.DIE] = sBat;
 
 // enemy scripts
 unitScript[UNIT_STATE.IDLE] = BatIdle;
-unitScript[UNIT_STATE.WANDER] = BatFollow;
+unitScript[UNIT_STATE.WANDER] = SlimeWander;
 unitScript[UNIT_STATE.CHASE] = SlimeChase;
 unitScript[UNIT_STATE.ATTACK] = SlimeAttack;
 unitScript[UNIT_STATE.HURT] = SlimeHurt;
 unitScript[UNIT_STATE.DIE] = SlimeDie;
-unitScript[UNIT_STATE.RESET] = SlimeReset;
+unitScript[UNIT_STATE.RESET] = BatReset;
 

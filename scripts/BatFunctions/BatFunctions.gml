@@ -2,50 +2,59 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function BatIdle()
 {
-	if(instance_exists(oPlayer))
+	if((fleeing || (ds_map_size(threatTable)  <= 0))
+	&& instance_exists(oPlayer)
+	&& (point_distance(x, y, oPlayer.x, oPlayer.y) > attackRange))
 	{
-		var _distance = point_distance(x, y, oPlayer.x, oPlayer.y);
-		if(_distance >= chasePlayerStartRadius)
-		{
-			timePassedMoving = 0;
-			state = UNIT_STATE.WANDER;
-		}
+		timePassedMoving = 0;
+		state = UNIT_STATE.RESET;
+		return;
 	}
 }
 
-function BatFollow()
+function BatReset()
 {
-	if(instance_exists(oPlayer))
+	if(!fleeing && (ds_map_size(threatTable)  > 0)
+	|| !instance_exists(oPlayer)
+	|| (point_distance(x, y, oPlayer.x, oPlayer.y) <= attackRange))
 	{
-		var _distance = point_distance(x, y, oPlayer.x, oPlayer.y);
-		if(_distance <= chasePlayerStopRadius)
-		{
-			timePassedMoving = 0;
-			state = UNIT_STATE.IDLE;
-		}
-		else if(timePassedMoving >= chasePlayerMaxTime)
-		{
-			timePassedMoving = 0;
-			x = oPlayer.x;
-			y = oPlayer.y;
-			state = UNIT_STATE.IDLE;
-		}
-		else
-		{
-			timePassedMoving++;
-			image_speed = 1.0;
-			var _speedThisFrame = unitSpeed;
-			if(_distance < unitSpeed)
-			{
-				_speedThisFrame = _distance;
-			}
-			direction = point_direction(x, y, oPlayer.x, oPlayer.y);
-			hSpeed = lengthdir_x(_speedThisFrame, direction);
-			vSpeed = lengthdir_y(_speedThisFrame, direction);
-			AnimateSpriteSimple();
-		
-			// collide and move
-			UnitCollision();	
-		}
+		timePassedMoving = 0;
+		state = UNIT_STATE.IDLE;
+		return;
 	}
+	
+	if(++timePassedMoving > chasePlayerMaxTime)
+	{
+		timePassedMoving = 0;
+		do
+		{
+			var _direction = point_direction(oPlayer.x, oPlayer.y, x, y) + irandom_range(-90, 90);
+			var _x = oPlayer.x + lengthdir_x(attackRange, _direction);
+			var _y = oPlayer.y + lengthdir_y(attackRange, _direction);
+			var _collision = tilemap_get_at_pixel(collisionMap, _x, _y);
+			
+			if(!_collision)
+			{
+				x = _x;
+				y = _y;
+			}
+		} until(!_collision);
+		state = UNIT_STATE.IDLE;
+		return;
+	}
+	
+	image_speed = 1.0;
+	var _speedThisFrame = unitSpeed;
+	var _distance = point_distance(x, y, oPlayer.x, oPlayer.y);
+	if(_distance < unitSpeed)
+	{
+		_speedThisFrame = _distance;
+	}
+	direction = point_direction(x, y, oPlayer.x, oPlayer.y);
+	hSpeed = lengthdir_x(_speedThisFrame, direction);
+	vSpeed = lengthdir_y(_speedThisFrame, direction);
+	AnimateSpriteSimple();
+		
+	// collide and move
+	UnitCollision();	
 }

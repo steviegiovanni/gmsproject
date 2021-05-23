@@ -19,3 +19,19 @@ if(keyboard_check_pressed(vk_escape))
 		}
 	}
 }
+
+if(keyboard_check_pressed(ord("E")))
+{
+	with(pAlly)
+	{
+		fleeing = true;
+	}
+}
+
+if(keyboard_check_released(ord("E")))
+{
+	with(pAlly)
+	{
+		fleeing = false;
+	}
+}
