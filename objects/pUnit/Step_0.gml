@@ -18,6 +18,15 @@ if(!global.gamePaused)
 		}
 	}
 	
+	// update action cooldowns
+	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
+	{
+		if(_it != action)
+		{
+			actionTable[| _it].timer++;
+		}
+	}
+	
 	if(unitScript[state] != -1)
 	{
 		script_execute(unitScript[state]);

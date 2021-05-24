@@ -185,3 +185,47 @@ function GetHighestEnmityUnitFromThreatTable()
 	}
 	return _highestEnmityUnit;
 }
+
+function ActionCheckAttack()
+{
+	var _highestEnmityUnit = noone;
+	if((id == pAlly) && global.focusAttacks)
+	{
+		with(oPlayer)
+		{
+			_highestEnmityUnit = GetHighestEnmityUnitFromThreatTable();
+		}
+	}
+	else
+	{
+		_highestEnmityUnit = GetHighestEnmityUnitFromThreatTable();
+	}
+	
+	if(instance_exists(_highestEnmityUnit))
+	{
+		target = _highestEnmityUnit;
+		if(point_distance(x, y, target.x, target.y) <= attackRange)
+		{
+			ActionCommitAttack();
+		}
+		else
+		{
+			chaseStopRadius = attackRange;
+			state = UNIT_STATE.CHASE;
+		}
+		return true;
+	}
+	return false;
+}
+
+function ActionCommitAttack()
+{
+	if((action != -1) && (action < ds_list_size(actionTable)))
+	{
+		actionTable[| action].timer = 0;
+	}
+	sprite_index = sprites[UNIT_SPRITE.ATTACK];
+	image_index = 0;
+	image_speed = 1.0;
+	state = UNIT_STATE.ATTACK;
+}

@@ -22,6 +22,7 @@
     {"id":{"name":"ScreenShake","path":"scripts/ScreenShake/ScreenShake.yy",},"order":3,},
     {"id":{"name":"sSlimeDie","path":"sprites/sSlimeDie/sSlimeDie.yy",},"order":18,},
     {"id":{"name":"oSpawner","path":"objects/oSpawner/oSpawner.yy",},"order":17,},
+    {"id":{"name":"Structs","path":"scripts/Structs/Structs.yy",},"order":22,},
     {"id":{"name":"sCol","path":"sprites/sCol/sCol.yy",},"order":2,},
     {"id":{"name":"oFragment","path":"objects/oFragment/oFragment.yy",},"order":10,},
     {"id":{"name":"RoomTransition","path":"scripts/RoomTransition/RoomTransition.yy",},"order":13,},

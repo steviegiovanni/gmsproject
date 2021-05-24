@@ -17,3 +17,6 @@ unitScript[UNIT_STATE.ATTACK] = SlimeAttack;
 unitScript[UNIT_STATE.HURT] = SlimeHurt;
 unitScript[UNIT_STATE.DIE] = SlimeDie;
 unitScript[UNIT_STATE.RESET] = SlimeReset;
+
+// actions
+ds_list_add(actionTable, new Action("attack", 240, ActionCheckAttack, ActionCommitAttack));

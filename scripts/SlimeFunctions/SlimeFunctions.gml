@@ -24,28 +24,18 @@ function SlimeIdle()
 	if(instance_exists(target) && (point_distance(x, y, target.x, target.y) > attackRange))
 	{
 		chaseStopRadius = attackRange;
-		chaseState = UNIT_STATE.IDLE;
 		state = UNIT_STATE.CHASE;
 	}
 	
-	// if auto attack is not on cooldown, overwrite the action to auto attack
-	if((attackTime >= attackSpeed) && instance_exists(_highestEnmityUnit))
+	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
 	{
-		target = _highestEnmityUnit;
-		if(point_distance(x, y, target.x, target.y) <= attackRange)
+		action = _it;
+		if((actionTable[| action].timer > actionTable[| action].cooldown)
+		&& script_execute(actionTable[| action].actionCheck))
 		{
-			attackTime = 0;
-			sprite_index = sprites[UNIT_SPRITE.ATTACK];
-			image_index = 0;
-			image_speed = 1.0;
-			state = UNIT_STATE.ATTACK;
+			break;
 		}
-		else
-		{
-			chaseStopRadius = attackRange;
-			chaseState = UNIT_STATE.ATTACK;
-			state = UNIT_STATE.CHASE;
-		}
+		action = -1;
 	}
 	
 	// look at target if exists
@@ -111,7 +101,7 @@ function SlimeChase()
 	}
 	
 	// special reset case, unit is chasing to attack OR doing default latch on but the unit to follow is super far
-	if(((chaseState == UNIT_STATE.ATTACK) || (chaseState == UNIT_STATE.IDLE))
+	if((action == -1)
 	&& (point_distance(x, y, target.x, target.y) > aggroLostRadius))
 	{
 		target = noone;
@@ -120,10 +110,18 @@ function SlimeChase()
 		return;
 	}
 	
-	// if we have reach the desired distance, update the state to the previously set chaseState
+	// if we have reach the desired distance, continue action or back to idle
 	if(point_distance(x, y, target.x, target.y) <= chaseStopRadius)
 	{
-		state = chaseState;
+		if(action == -1)
+		{
+			timePassedMoving = 0;
+			state = UNIT_STATE.IDLE;
+		}
+		else if(action < ds_list_size(actionTable))
+		{
+			script_execute(actionTable[| action].actionCommit);
+		}
 		return;
 	}
 	

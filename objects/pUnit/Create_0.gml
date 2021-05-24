@@ -8,12 +8,15 @@ threatTable = ds_map_create();
 threatTableUpdateRate = 5;
 threatTableUpdateTimer = threatTableUpdateRate;
 
+// action table
+actionTable = ds_list_create();
+action = -1;
+
 // state management variables
 state = UNIT_STATE.IDLE;
 lastState = state;
 
 // chase parameters
-chaseState = state;
 chaseStopRadius = 0;
 
 // stats

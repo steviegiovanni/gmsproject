@@ -21,3 +21,5 @@ unitScript[UNIT_STATE.HURT] = SlimeHurt;
 unitScript[UNIT_STATE.DIE] = SlimeDie;
 unitScript[UNIT_STATE.RESET] = BatReset;
 
+// actions
+ds_list_add(actionTable, new Action("attack", 180, ActionCheckAttack, ActionCommitAttack));
