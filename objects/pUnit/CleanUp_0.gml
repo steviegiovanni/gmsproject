@@ -1,0 +1,4 @@
+if(ds_exists(threatTable, ds_type_map))
+{
+	ds_map_destroy(threatTable);
+}
