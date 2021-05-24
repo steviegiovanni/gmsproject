@@ -5,7 +5,7 @@
 event_inherited();
 
 threatTableUpdateTimer++;
-if(threatTableUpdateTimer >= threatTableUpdateRate)
+if((state != UNIT_STATE.DIE) && (threatTableUpdateTimer >= threatTableUpdateRate))
 {
 	with(pAlly)
 	{

@@ -35,3 +35,8 @@ if(keyboard_check_released(ord("E")))
 		fleeing = false;
 	}
 }
+
+if(keyboard_check_pressed(ord("P")))
+{
+	global.focusAttacks = !global.focusAttacks;
+}

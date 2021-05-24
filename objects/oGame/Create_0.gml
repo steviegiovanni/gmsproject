@@ -1,6 +1,7 @@
 // initialise & globals
 randomize();
 global.gamePaused = false;
+global.focusAttacks = true;
 global.textSpeed = .75;
 
 // room transition
