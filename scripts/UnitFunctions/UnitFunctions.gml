@@ -189,7 +189,7 @@ function GetHighestEnmityUnitFromThreatTable()
 function GetHighestEnmityUnitFromThreatTableGeneralized()
 {
 	var _highestEnmityUnit = noone;
-	if((id == pAlly) && global.focusAttacks)
+	if((object_is_ancestor(object_index, pAlly)) && global.focusAttacks)
 	{
 		with(oPlayer)
 		{
