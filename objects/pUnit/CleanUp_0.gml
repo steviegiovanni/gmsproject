@@ -5,5 +5,5 @@ if(ds_exists(threatTable, ds_type_map))
 
 if(ds_exists(actionTable, ds_type_list))
 {
-	ds_map_destroy(actionTable);
+	ds_list_destroy(actionTable);
 }

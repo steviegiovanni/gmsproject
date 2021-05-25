@@ -40,3 +40,8 @@ if(keyboard_check_pressed(ord("P")))
 {
 	global.focusAttacks = !global.focusAttacks;
 }
+
+if(keyboard_check_pressed(ord("T")))
+{
+	global.debug = !global.debug;
+}

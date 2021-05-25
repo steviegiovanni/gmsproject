@@ -3,6 +3,7 @@ randomize();
 global.gamePaused = false;
 global.focusAttacks = true;
 global.textSpeed = .75;
+global.debug = true;
 
 // room transition
 global.targetRoom = -1;
