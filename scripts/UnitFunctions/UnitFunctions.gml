@@ -186,7 +186,7 @@ function GetHighestEnmityUnitFromThreatTable()
 	return _highestEnmityUnit;
 }
 
-function ActionCheckAttack()
+function GetHighestEnmityUnitFromThreatTableGeneralized()
 {
 	var _highestEnmityUnit = noone;
 	if((id == pAlly) && global.focusAttacks)
@@ -200,7 +200,40 @@ function ActionCheckAttack()
 	{
 		_highestEnmityUnit = GetHighestEnmityUnitFromThreatTable();
 	}
-	
+	return _highestEnmityUnit;
+}
+
+function UnitLatchOn()
+{
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTableGeneralized();
+	if(instance_exists(_highestEnmityUnit))
+	{
+		target = _highestEnmityUnit;
+		if(point_distance(x, y, target.x, target.y) > attackRange)
+		{
+			chaseStopRadius = attackRange;
+			state = UNIT_STATE.CHASE;
+		}
+	}
+}
+
+function UnitActionLoop()
+{
+	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
+	{
+		action = _it;
+		if((actionTable[| action].timer > actionTable[| action].cooldown)
+		&& script_execute(actionTable[| action].actionCheck))
+		{
+			break;
+		}
+		action = -1;
+	}
+}
+
+function ActionCheckAttack()
+{
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTableGeneralized();
 	if(instance_exists(_highestEnmityUnit))
 	{
 		target = _highestEnmityUnit;

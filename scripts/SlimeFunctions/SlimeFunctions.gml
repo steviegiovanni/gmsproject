@@ -18,25 +18,8 @@ function SlimeIdle()
 		return;
 	}
 	
-	// if there's threat, latch onto the highest enmity unit by default 
-	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTable();
-	target = _highestEnmityUnit;
-	if(instance_exists(target) && (point_distance(x, y, target.x, target.y) > attackRange))
-	{
-		chaseStopRadius = attackRange;
-		state = UNIT_STATE.CHASE;
-	}
-	
-	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
-	{
-		action = _it;
-		if((actionTable[| action].timer > actionTable[| action].cooldown)
-		&& script_execute(actionTable[| action].actionCheck))
-		{
-			break;
-		}
-		action = -1;
-	}
+	UnitLatchOn();
+	UnitActionLoop();
 	
 	// look at target if exists
 	if(instance_exists(target))
