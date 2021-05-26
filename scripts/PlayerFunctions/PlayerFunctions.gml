@@ -177,43 +177,48 @@ function CalcAttack(_HBSprite)
 	mask_index = Sprite1;
 }
 
-function PlayerStateBonk(){
-	// movement
-	hSpeed = lengthdir_x(speedBonk, direction - 180);
-	vSpeed = lengthdir_y(speedBonk, direction - 180);
-	
-	moveDistanceRemaining = max(0, moveDistanceRemaining - speedBonk);
-	var _collided = UnitCollision();
-	
-	// update sprite
-	sprite_index = Sprite1_Hurt;
-	
-	switch(CARDINAL_DIR)
+function PlayerHurt()
+{
+	sprite_index = sprites[UNIT_SPRITE.HURT];
+	var _distanceToGo = point_distance(x, y, xTo, yTo);
+	if(_distanceToGo > unitSpeed)
 	{
-		case 0: 
+		image_speed = 1.0;
+		var _dir = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(unitSpeed, _dir);
+		vSpeed = lengthdir_y(unitSpeed, _dir);
+		
+		switch(CARDINAL_DIR)
 		{
-			image_index = 2;
-		}break;
-		case 2:
+			case 0: 
+			{
+				image_index = 2;
+			}break;
+			case 2:
+			{
+				image_index = 0;
+			}break;
+			case 3:
+			{
+				image_index = 1;
+			}break;
+			default:
+			{
+				image_index = 3;
+			}break;
+		}
+		
+		// collide and move, if there's a collision, then stop knockback
+		if(UnitCollision())
 		{
-			image_index = 0;
-		}break;
-		case 3:
-		{
-			image_index = 1;
-		}break;
-		default:
-		{
-			image_index = 3;
-		}break;
+			xTo = x;
+			yTo = y;
+		}
 	}
-	
-	// change height
-	z = sin(((moveDistanceRemaining / distanceBonk) * pi)) * distanceBonkHeight;
-	
-	// change state
-	if(moveDistanceRemaining <= 0)
+	else
 	{
+		x = xTo;
+		y = yTo;
 		state = UNIT_STATE.IDLE;
 	}
 }

@@ -40,6 +40,7 @@
     {"id":{"name":"oSlime","path":"objects/oSlime/oSlime.yy",},"order":15,},
     {"id":{"name":"sSlimeHurt","path":"sprites/sSlimeHurt/sSlimeHurt.yy",},"order":19,},
     {"id":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"order":0,},
+    {"id":{"name":"sBatHurt","path":"sprites/sBatHurt/sBatHurt.yy",},"order":22,},
     {"id":{"name":"sSlime","path":"sprites/sSlime/sSlime.yy",},"order":16,},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"order":0,},
     {"id":{"name":"pUnit","path":"objects/pUnit/pUnit.yy",},"order":16,},

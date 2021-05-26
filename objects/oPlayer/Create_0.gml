@@ -17,14 +17,14 @@ attackRadius = 16;
 sprites[UNIT_SPRITE.IDLE] = Sprite1;
 sprites[UNIT_SPRITE.MOVE] = Sprite1_Walk;
 sprites[UNIT_SPRITE.ATTACK] = Sprite1_AttackSlash;
-sprites[UNIT_SPRITE.HURT] = -1;
+sprites[UNIT_SPRITE.HURT] = Sprite1_Hurt;
 sprites[UNIT_SPRITE.DIE] = -1;
 
 unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.WANDER] = -1;
 unitScript[UNIT_STATE.CHASE] = -1;
 unitScript[UNIT_STATE.ATTACK] = PlayerStateAttack;
-unitScript[UNIT_STATE.HURT] = -1;
+unitScript[UNIT_STATE.HURT] = PlayerHurt;
 unitScript[UNIT_STATE.DIE] = -1;
 
 if(global.targetRoomStartX != -1)

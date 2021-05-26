@@ -144,6 +144,11 @@ function SlimeAttack()
 	
 	if(image_index > image_number -1)
 	{
+		if(instance_exists(target))
+		{
+			DamageUnit(target, 5, id, 10);
+		}
+		
 		state = UNIT_STATE.IDLE;
 		attackTime = 0;
 	}

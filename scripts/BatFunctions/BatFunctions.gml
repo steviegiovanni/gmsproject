@@ -113,6 +113,8 @@ function BatAttack()
 
 function BatReset()
 {
+	sprite_index = sprites[UNIT_SPRITE.MOVE];
+	
 	if(!instance_exists(oPlayer)
 	|| (!fleeing && ((!global.focusAttacks && (ds_map_size(threatTable)  > 0)) || (global.focusAttacks && (ds_map_size(oPlayer.threatTable)  > 0))))
 	|| (point_distance(x, y, oPlayer.x, oPlayer.y) <= attackRange))
@@ -156,4 +158,32 @@ function BatReset()
 		
 	// collide and move
 	UnitCollision();	
+}
+
+function BatHurt()
+{
+	sprite_index = sprites[UNIT_SPRITE.HURT];
+	var _distanceToGo = point_distance(x, y, xTo, yTo);
+	if(_distanceToGo > unitSpeed)
+	{
+		image_speed = 1.0;
+		var _dir = point_direction(x, y, xTo, yTo);
+		hSpeed = lengthdir_x(unitSpeed, _dir);
+		vSpeed = lengthdir_y(unitSpeed, _dir);
+		
+		AnimateSpriteSimple();
+		
+		// collide and move, if there's a collision, then stop knockback
+		if(UnitCollision())
+		{
+			xTo = x;
+			yTo = y;
+		}
+	}
+	else
+	{
+		x = xTo;
+		y = yTo;
+		state = UNIT_STATE.IDLE;
+	}
 }
