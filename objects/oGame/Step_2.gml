@@ -36,7 +36,7 @@ if(keyboard_check_released(ord("E")))
 	}
 }
 
-if(keyboard_check_pressed(ord("P")))
+if(keyboard_check_pressed(ord("F")))
 {
 	global.focusAttacks = !global.focusAttacks;
 }

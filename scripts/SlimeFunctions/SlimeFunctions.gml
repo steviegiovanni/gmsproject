@@ -84,11 +84,11 @@ function SlimeChase()
 	}
 	
 	// special reset case, unit is chasing to attack OR doing default latch on but the unit to follow is super far
-	if((action == -1)
-	&& (point_distance(x, y, target.x, target.y) > aggroLostRadius))
+	if(point_distance(x, y, target.x, target.y) > aggroLostRadius)
 	{
 		target = noone;
 		timePassedMoving = 0;
+		maxResetTime = point_distance(x, y, xstart, ystart) / unitSpeed;
 		state = UNIT_STATE.RESET;
 		return;
 	}
@@ -211,7 +211,7 @@ function SlimeReset()
 	
 	// back at the start or given up?
 	if(((x == xstart) && (y == ystart))
-	|| (timePassedMoving > aggroLostRadius / unitSpeed))
+	|| (timePassedMoving > maxResetTime))
 	{
 		x = xstart;
 		y = ystart;

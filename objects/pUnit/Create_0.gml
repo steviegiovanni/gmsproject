@@ -38,6 +38,7 @@ timePassedMoving = 0;
 waitTimeBeforeWandering = 60;
 timePassedBeforeWandering = 0;
 wanderDistance = 32;
+maxResetTime = 600;
 
 // aggro parameters
 aggroRadius = 40;

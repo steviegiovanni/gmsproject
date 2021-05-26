@@ -19,6 +19,7 @@
     {"id":{"name":"BatFunctions","path":"scripts/BatFunctions/BatFunctions.yy",},"order":21,},
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":4,},
     {"id":{"name":"sPlant","path":"sprites/sPlant/sPlant.yy",},"order":12,},
+    {"id":{"name":"sDebugCircle","path":"sprites/sDebugCircle/sDebugCircle.yy",},"order":21,},
     {"id":{"name":"ScreenShake","path":"scripts/ScreenShake/ScreenShake.yy",},"order":3,},
     {"id":{"name":"sSlimeDie","path":"sprites/sSlimeDie/sSlimeDie.yy",},"order":18,},
     {"id":{"name":"oSpawner","path":"objects/oSpawner/oSpawner.yy",},"order":17,},

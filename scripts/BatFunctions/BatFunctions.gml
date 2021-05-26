@@ -42,8 +42,7 @@ function BatChase()
 	}
 	
 	// special reset case, unit is chasing to attack OR doing default latch on but the unit to follow is super far
-	if((action == -1)
-	&& (point_distance(x, y, target.x, target.y) > aggroLostRadius))
+	if(point_distance(x, y, target.x, target.y) > aggroLostRadius)
 	{
 		target = noone;
 		timePassedMoving = 0;
@@ -123,7 +122,7 @@ function BatReset()
 		return;
 	}
 	
-	if(++timePassedMoving > chasePlayerMaxTime)
+	if(++timePassedMoving > maxResetTime)
 	{
 		timePassedMoving = 0;
 		do
