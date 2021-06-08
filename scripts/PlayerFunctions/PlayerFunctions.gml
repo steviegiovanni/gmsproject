@@ -6,6 +6,8 @@ function PlayerStateFree()
 
 	UnitCollision();
 
+	var _alerted = ds_map_size(threatTable) > 0;
+
 	// update sprite index
 	var _oldSprite = sprite_index;
 	if(inputMagnitude != 0)
@@ -15,7 +17,14 @@ function PlayerStateFree()
 	}
 	else
 	{
-		sprite_index = sprites[UNIT_SPRITE.IDLE];
+		if(_alerted)
+		{
+			sprite_index = sprites[UNIT_SPRITE.ALERT];
+		}
+		else
+		{
+			sprite_index = sprites[UNIT_SPRITE.IDLE];
+		}
 	}
 
 	if(_oldSprite != sprite_index)
@@ -24,7 +33,14 @@ function PlayerStateFree()
 	}
 
 	// update image index
-	AnimateSprite4Dir();
+	if(_alerted && (inputMagnitude == 0))
+	{
+		AnimateSprite2Dir();
+	}
+	else
+	{
+		AnimateSprite4Dir();
+	}
 	
 	if(!instance_exists(target))
 	{
@@ -133,7 +149,7 @@ function PlayerStateAttack()
 	CalcAttack(sPlayerAttackSlashHB);
 	
 	// update sprite
-	var _animationEnd = AnimateSprite4Dir();
+	var _animationEnd = AnimateSprite2Dir();
 	
 	if(_animationEnd)
 	{
@@ -188,25 +204,7 @@ function PlayerHurt()
 		hSpeed = lengthdir_x(unitSpeed, _dir);
 		vSpeed = lengthdir_y(unitSpeed, _dir);
 		
-		switch(CARDINAL_DIR)
-		{
-			case 0: 
-			{
-				image_index = 2;
-			}break;
-			case 2:
-			{
-				image_index = 0;
-			}break;
-			case 3:
-			{
-				image_index = 1;
-			}break;
-			default:
-			{
-				image_index = 3;
-			}break;
-		}
+		AnimateSprite2Dir();
 		
 		// collide and move, if there's a collision, then stop knockback
 		if(UnitCollision())

@@ -54,6 +54,7 @@ target = noone;
 
 // sprites
 sprites[UNIT_SPRITE.IDLE] = sSlime;
+sprites[UNIT_SPRITE.ALERT] = sSlime;
 sprites[UNIT_SPRITE.MOVE] = sSlime;
 sprites[UNIT_SPRITE.ATTACK] = sSlime;
 sprites[UNIT_SPRITE.HURT] = sSlime;

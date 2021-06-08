@@ -1,6 +1,7 @@
 #macro FRAME_RATE 60
 #macro TILE_SIZE 16
 #macro CARDINAL_DIR round(direction / 90)
+#macro LEFTRIGHT_DIR round(direction / 180)
 #macro ROOM_START rVillage
 
 #macro RESOLUTION_W 320
@@ -50,6 +51,7 @@ function UnitStateToString(_unitState)
 enum UNIT_SPRITE
 {
 	IDLE,
+	ALERT,
 	MOVE,
 	ATTACK,
 	HURT,

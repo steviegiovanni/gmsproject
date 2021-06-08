@@ -14,11 +14,12 @@ spriteRoll = Sprite1_Roll;
 
 attackRadius = 16;
 
-sprites[UNIT_SPRITE.IDLE] = Sprite1;
-sprites[UNIT_SPRITE.MOVE] = Sprite1_Walk;
-sprites[UNIT_SPRITE.ATTACK] = Sprite1_AttackSlash;
-sprites[UNIT_SPRITE.HURT] = Sprite1_Hurt;
-sprites[UNIT_SPRITE.DIE] = -1;
+sprites[UNIT_SPRITE.IDLE] = sA1Idle;
+sprites[UNIT_SPRITE.ALERT] = sA1IdleBattle;
+sprites[UNIT_SPRITE.MOVE] = sA1Move;
+sprites[UNIT_SPRITE.ATTACK] = sA1Attack;
+sprites[UNIT_SPRITE.HURT] = sA1Hurt;
+sprites[UNIT_SPRITE.DIE] = sA1Die;
 
 unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.WANDER] = -1;
