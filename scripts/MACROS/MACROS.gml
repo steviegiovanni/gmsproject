@@ -4,8 +4,8 @@
 #macro LEFTRIGHT_DIR round(direction / 180)
 #macro ROOM_START rVillage
 
-#macro RESOLUTION_W 320
-#macro RESOLUTION_H 180
+#macro RESOLUTION_W 540
+#macro RESOLUTION_H 960
 
 #macro TRANSITION_SPEED 0.02
 #macro OUT 0
