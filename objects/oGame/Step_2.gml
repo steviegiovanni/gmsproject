@@ -45,3 +45,15 @@ if(keyboard_check_pressed(ord("T")))
 {
 	global.debug = !global.debug;
 }
+
+if(!instance_exists(global.controlledUnit))
+{
+	with(pAlly)
+	{
+		if(playerControlled)
+		{
+			global.controlledUnit = id;
+			break;
+		}
+	}
+}

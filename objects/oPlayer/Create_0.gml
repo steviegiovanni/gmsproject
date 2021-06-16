@@ -1,5 +1,7 @@
 event_inherited();
 
+playerControlled = true;
+
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
 

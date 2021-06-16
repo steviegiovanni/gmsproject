@@ -19,7 +19,7 @@ if(responseSelected < _min)
 	responseSelected = _max;
 }
 
-if(oPlayer.keyActivate)
+if(instance_exists(global.controlledUnit) && global.controlledUnit.keyActivate)
 {
 	var _messageLength = string_length(textMessage);
 	if(textProgress >= _messageLength)

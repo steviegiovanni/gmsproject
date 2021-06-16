@@ -2,16 +2,16 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function BatIdle()
 {
-	if(!instance_exists(oPlayer))
+	if(!instance_exists(global.controlledUnit))
 	{
 		return;
 	}
 	
 	if(fleeing 
 	|| (!global.focusAttacks && (ds_map_size(threatTable)  <= 0))
-	|| (global.focusAttacks && (ds_map_size(oPlayer.threatTable) <= 0)))
+	|| (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable) <= 0)))
 	{
-		if(point_distance(x, y, oPlayer.x, oPlayer.y) > attackRange)
+		if(point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) > attackRange)
 		{
 			timePassedMoving = 0;
 			state = UNIT_STATE.RESET;
@@ -115,9 +115,9 @@ function BatReset()
 {
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
 	
-	if(!instance_exists(oPlayer)
-	|| (!fleeing && ((!global.focusAttacks && (ds_map_size(threatTable)  > 0)) || (global.focusAttacks && (ds_map_size(oPlayer.threatTable)  > 0))))
-	|| (point_distance(x, y, oPlayer.x, oPlayer.y) <= attackRange))
+	if(!instance_exists(global.controlledUnit)
+	|| (!fleeing && ((!global.focusAttacks && (ds_map_size(threatTable)  > 0)) || (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable)  > 0))))
+	|| (point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) <= attackRange))
 	{
 		timePassedMoving = 0;
 		state = UNIT_STATE.IDLE;
@@ -129,9 +129,9 @@ function BatReset()
 		timePassedMoving = 0;
 		do
 		{
-			var _direction = point_direction(oPlayer.x, oPlayer.y, x, y) + irandom_range(-90, 90);
-			var _x = oPlayer.x + lengthdir_x(attackRange, _direction);
-			var _y = oPlayer.y + lengthdir_y(attackRange, _direction);
+			var _direction = point_direction(global.controlledUnit.x, global.controlledUnit.y, x, y) + irandom_range(-90, 90);
+			var _x = global.controlledUnit.x + lengthdir_x(attackRange, _direction);
+			var _y = global.controlledUnit.y + lengthdir_y(attackRange, _direction);
 			var _collision = tilemap_get_at_pixel(collisionMap, _x, _y);
 			
 			if(!_collision)
@@ -146,12 +146,12 @@ function BatReset()
 	
 	image_speed = 1.0;
 	var _speedThisFrame = unitSpeed;
-	var _distance = point_distance(x, y, oPlayer.x, oPlayer.y);
+	var _distance = point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y);
 	if(_distance < unitSpeed)
 	{
 		_speedThisFrame = _distance;
 	}
-	direction = point_direction(x, y, oPlayer.x, oPlayer.y);
+	direction = point_direction(x, y, global.controlledUnit.x, global.controlledUnit.y);
 	hSpeed = lengthdir_x(_speedThisFrame, direction);
 	vSpeed = lengthdir_y(_speedThisFrame, direction);
 	AnimateSpriteSimple();

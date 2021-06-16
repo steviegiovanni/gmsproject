@@ -1,10 +1,10 @@
 /// @description update camera
 
 // update destination
-if(instance_exists(follow))
+if(instance_exists(global.controlledUnit))
 {
-	xTo = follow.x;
-	yTo = follow.y;
+	xTo = global.controlledUnit.x;
+	yTo = global.controlledUnit.y;
 }
 
 // update object position
