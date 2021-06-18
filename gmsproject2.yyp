@@ -19,7 +19,7 @@
     {"id":{"name":"NineSliceBoxStretched","path":"scripts/NineSliceBoxStretched/NineSliceBoxStretched.yy",},"order":4,},
     {"id":{"name":"sA1IdleBattle","path":"sprites/sA1IdleBattle/sA1IdleBattle.yy",},"order":1,},
     {"id":{"name":"fText","path":"fonts/fText/fText.yy",},"order":0,},
-    {"id":{"name":"BatFunctions","path":"scripts/BatFunctions/BatFunctions.yy",},"order":21,},
+    {"id":{"name":"AllyFunctions","path":"scripts/AllyFunctions/AllyFunctions.yy",},"order":21,},
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":4,},
     {"id":{"name":"sPlant","path":"sprites/sPlant/sPlant.yy",},"order":12,},
     {"id":{"name":"sDebugCircle","path":"sprites/sDebugCircle/sDebugCircle.yy",},"order":21,},

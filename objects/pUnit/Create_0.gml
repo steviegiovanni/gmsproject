@@ -60,6 +60,14 @@ sprites[UNIT_SPRITE.ATTACK] = sSlime;
 sprites[UNIT_SPRITE.HURT] = sSlime;
 sprites[UNIT_SPRITE.DIE] = sSlime;
 
+// sprite animation functions
+spriteAnimationFunctions[UNIT_SPRITE.IDLE] = AnimateSpriteSimple;
+spriteAnimationFunctions[UNIT_SPRITE.ALERT] = AnimateSpriteSimple;
+spriteAnimationFunctions[UNIT_SPRITE.MOVE] = AnimateSpriteSimple;
+spriteAnimationFunctions[UNIT_SPRITE.ATTACK] = AnimateSpriteSimple;
+spriteAnimationFunctions[UNIT_SPRITE.HURT] = AnimateSpriteSimple;
+spriteAnimationFunctions[UNIT_SPRITE.DIE] = AnimateSpriteSimple;
+
 // unit scripts
 unitScript[UNIT_STATE.IDLE] = -1;
 unitScript[UNIT_STATE.WANDER] = -1;

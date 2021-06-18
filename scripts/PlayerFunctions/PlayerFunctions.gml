@@ -1,5 +1,17 @@
 function PlayerStateFree()
 {
+	if(playerControlled)
+	{
+		PlayerIdleControlled();
+	}
+	else
+	{
+		AllyIdle();
+	}
+}
+
+function PlayerIdleControlled()
+{
 	// movement
 	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
 	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
@@ -118,6 +130,44 @@ function PlayerStateFree()
 					image_index = CARDINAL_DIR;
 				}
 			}
+		}
+	}
+}
+
+function PlayerIdleAI()
+{
+	if(!instance_exists(global.controlledUnit))
+	{
+		return;
+	}
+	
+	if(fleeing 
+	|| (!global.focusAttacks && (ds_map_size(threatTable)  <= 0))
+	|| (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable) <= 0)))
+	{
+		if(point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) > attackRange)
+		{
+			timePassedMoving = 0;
+			state = UNIT_STATE.RESET;
+		}
+		return;
+	}
+	
+	UnitLatchOn();
+	UnitActionLoop();
+	
+	// look at target if exists
+	if(instance_exists(target))
+	{
+		direction = point_direction(x, y, target.x, target.y);
+		var _alerted = ds_map_size(threatTable) > 0;
+		if(_alerted)
+		{
+			sprite_index = sprites[UNIT_SPRITE.ALERT];
+		}
+		else
+		{
+			sprite_index = sprites[UNIT_SPRITE.IDLE];
 		}
 	}
 }

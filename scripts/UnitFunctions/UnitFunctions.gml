@@ -1,5 +1,6 @@
 function AnimateSprite4Dir()
 {
+	image_speed = 0;
 	// update sprite
 	var _totalFrames = sprite_get_number(sprite_index) / 4;
 	image_index = localFrame + (CARDINAL_DIR * _totalFrames);
@@ -19,6 +20,7 @@ function AnimateSprite4Dir()
 
 function AnimateSprite2Dir()
 {
+	image_speed = 0;
 	var _totalFrames = sprite_get_number(sprite_index) / 2;
 	image_index = localFrame + (LEFTRIGHT_DIR * _totalFrames);
 	localFrame += sprite_get_speed(sprite_index) / FRAME_RATE;
@@ -37,6 +39,7 @@ function AnimateSprite2Dir()
 
 function AnimateSpriteSimple()
 {
+	image_speed = 1;
 	var _dir = lengthdir_x(1, direction);
 	if(_dir != 0)
 	{

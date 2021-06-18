@@ -1,6 +1,6 @@
 event_inherited();
 
-playerControlled = true;
+//playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -25,10 +25,15 @@ sprites[UNIT_SPRITE.DIE] = sA1Die;
 
 unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.WANDER] = -1;
-unitScript[UNIT_STATE.CHASE] = -1;
+unitScript[UNIT_STATE.CHASE] = AllyChase;
 unitScript[UNIT_STATE.ATTACK] = PlayerStateAttack;
 unitScript[UNIT_STATE.HURT] = PlayerHurt;
 unitScript[UNIT_STATE.DIE] = -1;
+unitScript[UNIT_STATE.RESET] = AllyReset;
+
+spriteAnimationFunctions[UNIT_SPRITE.IDLE] = AnimateSprite4Dir;
+spriteAnimationFunctions[UNIT_SPRITE.ALERT] = AnimateSprite2Dir;
+spriteAnimationFunctions[UNIT_SPRITE.MOVE] = AnimateSprite4Dir;
 
 if(global.targetRoomStartX != -1)
 {

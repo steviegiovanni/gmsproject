@@ -1,10 +1,28 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function BatIdle()
+function AllyIdle()
 {
 	if(!instance_exists(global.controlledUnit))
 	{
 		return;
+	}
+	
+	// look at target if exists
+	if(instance_exists(target))
+	{
+		direction = point_direction(x, y, target.x, target.y);
+	}
+	
+	var _alerted = ds_map_size(threatTable) > 0;
+	if(_alerted)
+	{
+		sprite_index = sprites[UNIT_SPRITE.ALERT];
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.ALERT]);
+	}
+	else
+	{
+		sprite_index = sprites[UNIT_SPRITE.IDLE];
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.IDLE]);
 	}
 	
 	if(fleeing 
@@ -21,16 +39,9 @@ function BatIdle()
 	
 	UnitLatchOn();
 	UnitActionLoop();
-	
-	// look at target if exists
-	if(instance_exists(target))
-	{
-		direction = point_direction(x, y, target.x, target.y);
-		AnimateSpriteSimple();
-	}
 }
 
-function BatChase()
+function AllyChase()
 {
 	// if our target is not valid, stop chasing and reset
 	if(!instance_exists(target))
@@ -72,7 +83,6 @@ function BatChase()
 	yTo = target.y;
 		
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	image_speed = 1.0;
 	direction = point_direction(x, y, xTo, yTo);
 	if(_distanceToGo > unitSpeed)
 	{
@@ -84,7 +94,7 @@ function BatChase()
 		hSpeed = lengthdir_x(_distanceToGo, direction);
 		vSpeed = lengthdir_y(_distanceToGo, direction);
 	}
-	AnimateSpriteSimple();
+	script_execute(spriteAnimationFunctions[UNIT_SPRITE.MOVE]);
 		
 	// collide and move
 	UnitCollision();
@@ -111,7 +121,7 @@ function BatAttack()
 	}
 }
 
-function BatReset()
+function AllyReset()
 {
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
 	
@@ -144,7 +154,6 @@ function BatReset()
 		return;
 	}
 	
-	image_speed = 1.0;
 	var _speedThisFrame = unitSpeed;
 	var _distance = point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y);
 	if(_distance < unitSpeed)
@@ -154,7 +163,7 @@ function BatReset()
 	direction = point_direction(x, y, global.controlledUnit.x, global.controlledUnit.y);
 	hSpeed = lengthdir_x(_speedThisFrame, direction);
 	vSpeed = lengthdir_y(_speedThisFrame, direction);
-	AnimateSpriteSimple();
+	script_execute(spriteAnimationFunctions[UNIT_SPRITE.MOVE]);
 		
 	// collide and move
 	UnitCollision();	
