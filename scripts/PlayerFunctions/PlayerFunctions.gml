@@ -243,34 +243,6 @@ function CalcAttack(_HBSprite)
 	mask_index = Sprite1;
 }
 
-function PlayerHurt()
-{
-	sprite_index = sprites[UNIT_SPRITE.HURT];
-	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	if(_distanceToGo > unitSpeed)
-	{
-		image_speed = 1.0;
-		var _dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(unitSpeed, _dir);
-		vSpeed = lengthdir_y(unitSpeed, _dir);
-		
-		AnimateSprite2Dir();
-		
-		// collide and move, if there's a collision, then stop knockback
-		if(UnitCollision())
-		{
-			xTo = x;
-			yTo = y;
-		}
-	}
-	else
-	{
-		x = xTo;
-		y = yTo;
-		state = UNIT_STATE.IDLE;
-	}
-}
-
 function PlayerStateRoll()
 {
 	// movement

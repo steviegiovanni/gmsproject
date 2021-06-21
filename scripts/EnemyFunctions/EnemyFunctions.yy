@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "UnitLogics",
+    "path": "folders/Scripts/UnitLogics.yy",
   },
   "resourceVersion": "1.0",
-  "name": "SlimeFunctions",
+  "name": "EnemyFunctions",
   "tags": [],
   "resourceType": "GMScript",
 }

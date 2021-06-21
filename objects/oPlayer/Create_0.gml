@@ -1,6 +1,6 @@
 event_inherited();
 
-//playerControlled = true;
+playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -27,7 +27,6 @@ unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.WANDER] = -1;
 unitScript[UNIT_STATE.CHASE] = AllyChase;
 unitScript[UNIT_STATE.ATTACK] = PlayerStateAttack;
-unitScript[UNIT_STATE.HURT] = PlayerHurt;
 unitScript[UNIT_STATE.DIE] = -1;
 unitScript[UNIT_STATE.RESET] = AllyReset;
 

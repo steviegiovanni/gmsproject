@@ -100,27 +100,6 @@ function AllyChase()
 	UnitCollision();
 }
 
-function BatAttack()
-{
-	sprite_index = sprites[UNIT_SPRITE.ATTACK];
-	if(instance_exists(target))
-	{
-		direction = point_direction(x, y, target.x, target.y);
-		AnimateSpriteSimple();
-	}
-	
-	if(image_index > image_number -1)
-	{
-		if(instance_exists(target))
-		{
-			DamageUnit(target, 5, id, 10);
-		}
-		
-		state = UNIT_STATE.IDLE;
-		attackTime = 0;
-	}
-}
-
 function AllyReset()
 {
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
@@ -167,32 +146,4 @@ function AllyReset()
 		
 	// collide and move
 	UnitCollision();	
-}
-
-function BatHurt()
-{
-	sprite_index = sprites[UNIT_SPRITE.HURT];
-	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	if(_distanceToGo > unitSpeed)
-	{
-		image_speed = 1.0;
-		var _dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(unitSpeed, _dir);
-		vSpeed = lengthdir_y(unitSpeed, _dir);
-		
-		AnimateSpriteSimple();
-		
-		// collide and move, if there's a collision, then stop knockback
-		if(UnitCollision())
-		{
-			xTo = x;
-			yTo = y;
-		}
-	}
-	else
-	{
-		x = xTo;
-		y = yTo;
-		state = UNIT_STATE.IDLE;
-	}
 }

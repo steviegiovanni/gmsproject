@@ -1,10 +1,24 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function SlimeIdle()
+function EnemyIdle()
 {
-	sprite_index = sprites[UNIT_SPRITE.MOVE];
-	image_index = 0;
-	image_speed = 0;
+	// look at target if exists
+	if(instance_exists(target))
+	{
+		direction = point_direction(x, y, target.x, target.y);
+	}
+	
+	var _alerted = ds_map_size(threatTable) > 0;
+	if(_alerted)
+	{
+		sprite_index = sprites[UNIT_SPRITE.ALERT];
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.ALERT]);
+	}
+	else
+	{
+		sprite_index = sprites[UNIT_SPRITE.IDLE];
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.IDLE]);
+	}
 	
 	// if there's no threat, we want to wander around
 	if((ds_map_size(threatTable) <= 0) && (++timePassedBeforeWandering >= waitTimeBeforeWandering))
@@ -20,16 +34,9 @@ function SlimeIdle()
 	
 	UnitLatchOn();
 	UnitActionLoop();
-	
-	// look at target if exists
-	if(instance_exists(target))
-	{
-		direction = point_direction(x, y, target.x, target.y);
-		AnimateSpriteSimple();
-	}
 }
 
-function SlimeWander()
+function EnemyWander()
 {
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
 	
@@ -65,14 +72,14 @@ function SlimeWander()
 		direction = point_direction(x, y, xTo, yTo);
 		hSpeed = lengthdir_x(_speedThisFrame, direction);
 		vSpeed = lengthdir_y(_speedThisFrame, direction);
-		AnimateSpriteSimple();
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.MOVE]);
 		
 		// collide and move
 		UnitCollision();
 	}
 }
 
-function SlimeChase()
+function EnemyChase()
 {
 	// if our target is not valid, stop chasing and reset
 	if(!instance_exists(target))
@@ -127,62 +134,13 @@ function SlimeChase()
 		hSpeed = lengthdir_x(_distanceToGo, direction);
 		vSpeed = lengthdir_y(_distanceToGo, direction);
 	}
-	AnimateSpriteSimple();
+	script_execute(spriteAnimationFunctions[UNIT_SPRITE.MOVE]);
 		
 	// collide and move
 	UnitCollision();
 }
 
-function SlimeAttack()
-{
-	sprite_index = sprites[UNIT_SPRITE.ATTACK];
-	if(instance_exists(target))
-	{
-		direction = point_direction(x, y, target.x, target.y);
-		AnimateSpriteSimple();
-	}
-	
-	if(image_index > image_number -1)
-	{
-		if(instance_exists(target))
-		{
-			DamageUnit(target, 5, id, 10);
-		}
-		
-		state = UNIT_STATE.IDLE;
-		attackTime = 0;
-	}
-}
-
-function SlimeHurt()
-{
-	sprite_index = sprites[UNIT_SPRITE.HURT];
-	var _distanceToGo = point_distance(x, y, xTo, yTo);
-	if(_distanceToGo > unitSpeed)
-	{
-		image_speed = 1.0;
-		var _dir = point_direction(x, y, xTo, yTo);
-		hSpeed = lengthdir_x(unitSpeed, _dir);
-		vSpeed = lengthdir_y(unitSpeed, _dir);
-		
-		AnimateSpriteSimple();
-		
-		// collide and move, if there's a collision, then stop knockback
-		if(UnitCollision())
-		{
-			xTo = x;
-			yTo = y;
-		}
-	}
-	else
-	{
-		x = xTo;
-		y = yTo;
-		state = UNIT_STATE.IDLE;
-	}
-}
-
-function SlimeDie()
+function EnemyDie()
 {
 	sprite_index = sprites[UNIT_SPRITE.DIE];
 	image_speed = 1.0;
@@ -192,7 +150,7 @@ function SlimeDie()
 		var _dir = point_direction(x, y, xTo, yTo);
 		hSpeed = lengthdir_x(unitSpeed, _dir);
 		vSpeed = lengthdir_y(unitSpeed, _dir);
-		AnimateSpriteSimple();
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.DIE]);
 		
 		// collide and move
 		UnitCollision();
@@ -209,7 +167,7 @@ function SlimeDie()
 	}
 }
 
-function SlimeReset()
+function EnemyReset()
 {
 	target = noone;
 	sprite_index = sprites[UNIT_SPRITE.MOVE];
@@ -246,7 +204,7 @@ function SlimeReset()
 		direction = point_direction(x, y, xstart, ystart);
 		hSpeed = lengthdir_x(_speedThisFrame, direction);
 		vSpeed = lengthdir_y(_speedThisFrame, direction);
-		AnimateSpriteSimple();
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.MOVE]);
 		
 		// collide and move
 		UnitCollision();

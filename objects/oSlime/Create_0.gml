@@ -10,13 +10,11 @@ sprites[UNIT_SPRITE.HURT] = sSlimeHurt;
 sprites[UNIT_SPRITE.DIE] = sSlimeDie;
 
 // enemy scripts
-unitScript[UNIT_STATE.IDLE] = SlimeIdle;
-unitScript[UNIT_STATE.WANDER] = SlimeWander;
-unitScript[UNIT_STATE.CHASE] = SlimeChase;
-unitScript[UNIT_STATE.ATTACK] = SlimeAttack;
-unitScript[UNIT_STATE.HURT] = SlimeHurt;
-unitScript[UNIT_STATE.DIE] = SlimeDie;
-unitScript[UNIT_STATE.RESET] = SlimeReset;
+unitScript[UNIT_STATE.IDLE] = EnemyIdle;
+unitScript[UNIT_STATE.WANDER] = EnemyWander;
+unitScript[UNIT_STATE.CHASE] = EnemyChase;
+unitScript[UNIT_STATE.DIE] = EnemyDie;
+unitScript[UNIT_STATE.RESET] = EnemyReset;
 
 // actions
 ds_list_add(actionTable, new Action("attack", 240, ActionCheckAttack, ActionCommitAttack));
