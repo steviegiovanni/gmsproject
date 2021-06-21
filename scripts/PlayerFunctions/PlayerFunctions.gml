@@ -47,17 +47,17 @@ function PlayerIdleControlled()
 	// update image index
 	if(_alerted && (inputMagnitude == 0))
 	{
-		AnimateSprite2Dir();
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.ALERT]);
 	}
 	else
 	{
-		AnimateSprite4Dir();
+		script_execute(spriteAnimationFunctions[UNIT_SPRITE.IDLE]);
 	}
 	
 	if(!instance_exists(target))
 	{
 		var _potentialTarget = instance_nearest(x, y, pEnemy);
-		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRadius)
+		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRange)
 		{
 			target = _potentialTarget;
 		} 
@@ -65,7 +65,7 @@ function PlayerIdleControlled()
 	
 	if((attackTime >= attackSpeed)
 	&& instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= attackRadius))
+	&& (point_distance(x, y, target.x, target.y) <= attackRange))
 	{
 		state = UNIT_STATE.ATTACK;
 	}
@@ -130,44 +130,6 @@ function PlayerIdleControlled()
 					image_index = CARDINAL_DIR;
 				}
 			}
-		}
-	}
-}
-
-function PlayerIdleAI()
-{
-	if(!instance_exists(global.controlledUnit))
-	{
-		return;
-	}
-	
-	if(fleeing 
-	|| (!global.focusAttacks && (ds_map_size(threatTable)  <= 0))
-	|| (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable) <= 0)))
-	{
-		if(point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) > attackRange)
-		{
-			timePassedMoving = 0;
-			state = UNIT_STATE.RESET;
-		}
-		return;
-	}
-	
-	UnitLatchOn();
-	UnitActionLoop();
-	
-	// look at target if exists
-	if(instance_exists(target))
-	{
-		direction = point_direction(x, y, target.x, target.y);
-		var _alerted = ds_map_size(threatTable) > 0;
-		if(_alerted)
-		{
-			sprite_index = sprites[UNIT_SPRITE.ALERT];
-		}
-		else
-		{
-			sprite_index = sprites[UNIT_SPRITE.IDLE];
 		}
 	}
 }

@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-//playerControlled = true;
+playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 
@@ -17,7 +17,7 @@ sprites[UNIT_SPRITE.HURT] = sBatHurt;
 sprites[UNIT_SPRITE.DIE] = sBat;
 
 // enemy scripts
-unitScript[UNIT_STATE.IDLE] = AllyIdle;
+unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.CHASE] = AllyChase;
 unitScript[UNIT_STATE.RESET] = AllyReset;
 

@@ -1,6 +1,6 @@
 event_inherited();
 
-playerControlled = true;
+//playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -13,8 +13,6 @@ distanceBonkHeight = 12;
 speedBonk = 1.5;
 
 spriteRoll = Sprite1_Roll;
-
-attackRadius = 16;
 
 sprites[UNIT_SPRITE.IDLE] = sA1Idle;
 sprites[UNIT_SPRITE.ALERT] = sA1IdleBattle;
