@@ -10,6 +10,7 @@ threatTableUpdateTimer = threatTableUpdateRate;
 
 // action table
 actionTable = ds_list_create();
+skillTable = ds_list_create();
 action = -1;
 
 // state management variables

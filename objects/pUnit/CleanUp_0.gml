@@ -7,3 +7,8 @@ if(ds_exists(actionTable, ds_type_list))
 {
 	ds_list_destroy(actionTable);
 }
+
+if(ds_exists(skillTable, ds_type_list))
+{
+	ds_list_destroy(skillTable);
+}

@@ -39,5 +39,8 @@ if(global.targetRoomStartX != -1)
 	direction = global.targetRoomStartDirection;
 }
 
+// skills
+ds_list_add(skillTable, new Skill("attack", 240));
+
 // actions
-ds_list_add(actionTable, new Action("attack", 240, ActionCheckAttack, ActionCommitAttack));
+ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack, ActionCommitAttack));

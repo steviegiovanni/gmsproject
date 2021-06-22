@@ -243,7 +243,9 @@ function UnitActionLoop()
 	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
 	{
 		action = _it;
-		if((actionTable[| action].timer > actionTable[| action].cooldown)
+		var _skillId = actionTable[| action].skillId;
+		if((_skillId < ds_list_size(skillTable))
+		&& (skillTable[| _skillId].skillTimer > skillTable[| _skillId].skillCooldown)
 		&& script_execute(actionTable[| action].actionCheck))
 		{
 			break;
@@ -274,9 +276,11 @@ function ActionCheckAttack()
 
 function ActionCommitAttack()
 {
-	if((action != -1) && (action < ds_list_size(actionTable)))
+	if((action != -1) 
+	&& (action < ds_list_size(actionTable))
+	&& (actionTable[| action].skillId < ds_list_size(skillTable)))
 	{
-		actionTable[| action].timer = 0;
+		skillTable[| (actionTable[| action].skillId)].skillTimer = 0;
 	}
 	image_index = 0;
 	image_speed = 1.0;

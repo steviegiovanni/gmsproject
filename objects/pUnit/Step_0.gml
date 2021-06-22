@@ -18,12 +18,13 @@ if(!global.gamePaused)
 		}
 	}
 	
-	// update action cooldowns
-	for(var _it = 0; _it < ds_list_size(actionTable); ++_it)
+	// update skill cooldowns
+	for(var _it = 0; _it < ds_list_size(skillTable); ++_it)
 	{
-		if(_it != action)
+		if((action == -1)
+		|| (actionTable[| action].skillId != _it))
 		{
-			actionTable[| _it].timer++;
+			skillTable[| _it].skillTimer++;
 		}
 	}
 	

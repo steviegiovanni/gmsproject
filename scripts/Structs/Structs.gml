@@ -1,8 +1,14 @@
-function Action(_actionName, _cooldown, _actionCheck, _actionCommit) constructor
+function Action(_actionName, _skillId, _actionCheck, _actionCommit) constructor
 {
 	actionName = _actionName;
-	cooldown = _cooldown;
-	timer = cooldown;
+	skillId = _skillId;
 	actionCheck = _actionCheck;
 	actionCommit = _actionCommit;
+}
+
+function Skill(_skillName, _skillCooldown) constructor
+{
+	skillName = _skillName;
+	skillCooldown = _skillCooldown;
+	skillTimer = skillCooldown;
 }

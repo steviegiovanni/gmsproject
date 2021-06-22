@@ -21,5 +21,8 @@ unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.CHASE] = AllyChase;
 unitScript[UNIT_STATE.RESET] = AllyReset;
 
+// skills
+ds_list_add(skillTable, new Skill("attack", 240));
+
 // actions
-ds_list_add(actionTable, new Action("attack", 180, ActionCheckAttack, ActionCommitAttack));
+ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack, ActionCommitAttack));
