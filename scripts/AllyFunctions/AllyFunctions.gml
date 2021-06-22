@@ -71,7 +71,7 @@ function AllyChase()
 		}
 		else if(action < ds_list_size(actionTable))
 		{
-			script_execute(actionTable[| action].actionCommit);
+			ActionCommit();
 		}
 		return;
 	}

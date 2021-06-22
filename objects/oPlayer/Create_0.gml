@@ -1,6 +1,6 @@
 event_inherited();
 
-//playerControlled = true;
+playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -24,7 +24,6 @@ sprites[UNIT_SPRITE.DIE] = sA1Die;
 unitScript[UNIT_STATE.IDLE] = PlayerStateFree;
 unitScript[UNIT_STATE.WANDER] = -1;
 unitScript[UNIT_STATE.CHASE] = AllyChase;
-unitScript[UNIT_STATE.ATTACK] = PlayerStateAttack;
 unitScript[UNIT_STATE.DIE] = -1;
 unitScript[UNIT_STATE.RESET] = AllyReset;
 
@@ -40,7 +39,7 @@ if(global.targetRoomStartX != -1)
 }
 
 // skills
-ds_list_add(skillTable, new Skill("attack", 240));
+ds_list_add(skillTable, new Skill("attack", 240, PlayerStateAttack));
 
 // actions
-ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack, ActionCommitAttack));
+ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack));

@@ -17,7 +17,7 @@ unitScript[UNIT_STATE.DIE] = EnemyDie;
 unitScript[UNIT_STATE.RESET] = EnemyReset;
 
 // skills
-ds_list_add(skillTable, new Skill("attack", 240));
+ds_list_add(skillTable, new Skill("attack", 240, UnitAttack));
 
 // actions
-ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack, ActionCommitAttack));
+ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack));

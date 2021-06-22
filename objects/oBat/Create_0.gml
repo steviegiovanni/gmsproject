@@ -1,12 +1,11 @@
 // Inherit the parent event
 event_inherited();
 
-playerControlled = true;
+//playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 
 unitSpeed = 1.5;
-attackSpeed = 60;
 
 // enemy sprites
 sprites[UNIT_SPRITE.IDLE] = sBat;
@@ -22,7 +21,7 @@ unitScript[UNIT_STATE.CHASE] = AllyChase;
 unitScript[UNIT_STATE.RESET] = AllyReset;
 
 // skills
-ds_list_add(skillTable, new Skill("attack", 240));
+ds_list_add(skillTable, new Skill("attack", 240, UnitAttack));
 
 // actions
-ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack, ActionCommitAttack));
+ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack));

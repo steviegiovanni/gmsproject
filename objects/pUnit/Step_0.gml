@@ -1,9 +1,6 @@
 /// @description execute state machine
 if(!global.gamePaused)
 {
-	// update cooldowns
-	++attackTime;
-	
 	// clean threat table
 	var it = ds_map_find_first(threatTable);
 	while(!is_undefined(it))

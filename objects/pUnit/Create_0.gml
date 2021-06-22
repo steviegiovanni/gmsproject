@@ -45,10 +45,6 @@ maxResetTime = 600;
 aggroRadius = 40;
 aggroLostRadius = 100;
 
-// auto attack parameters
-attackSpeed = 240;
-attackTime = attackSpeed;
-
 // targetting parameters
 target = noone;
 
@@ -74,7 +70,7 @@ spriteAnimationFunctions[UNIT_SPRITE.DIE] = AnimateSpriteSimple;
 unitScript[UNIT_STATE.IDLE] = -1;
 unitScript[UNIT_STATE.WANDER] = -1;
 unitScript[UNIT_STATE.CHASE] = -1;
-unitScript[UNIT_STATE.ATTACK] = UnitAttack;
+unitScript[UNIT_STATE.COMMIT] = UnitCommit;
 unitScript[UNIT_STATE.HURT] = UnitHurt;
 unitScript[UNIT_STATE.DIE] = -1;
 unitScript[UNIT_STATE.RESET] = -1;

@@ -262,7 +262,7 @@ function ActionCheckAttack()
 		target = _highestEnmityUnit;
 		if(point_distance(x, y, target.x, target.y) <= meleeRange)
 		{
-			ActionCommitAttack();
+			ActionCommit();
 		}
 		else
 		{
@@ -274,7 +274,7 @@ function ActionCheckAttack()
 	return false;
 }
 
-function ActionCommitAttack()
+function ActionCommit()
 {
 	if((action != -1) 
 	&& (action < ds_list_size(actionTable))
@@ -284,7 +284,17 @@ function ActionCommitAttack()
 	}
 	image_index = 0;
 	image_speed = 1.0;
-	state = UNIT_STATE.ATTACK;
+	state = UNIT_STATE.COMMIT;
+}
+
+function UnitCommit()
+{
+	if((action != -1) 
+	&& (action < ds_list_size(actionTable))
+	&& (actionTable[| action].skillId < ds_list_size(skillTable)))
+	{
+		script_execute(skillTable[| (actionTable[| action].skillId)].skillCommit);
+	}
 }
 
 function UnitAttack()
@@ -304,7 +314,6 @@ function UnitAttack()
 		}
 		
 		state = UNIT_STATE.IDLE;
-		attackTime = 0;
 	}
 }
 

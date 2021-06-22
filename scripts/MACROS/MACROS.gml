@@ -16,7 +16,7 @@ enum UNIT_STATE
 	IDLE,
 	WANDER,
 	CHASE,
-	ATTACK,
+	COMMIT,
 	HURT,
 	DIE,
 	RESET,
@@ -33,8 +33,8 @@ function UnitStateToString(_unitState)
 		return "Wander";
 		case UNIT_STATE.CHASE:
 		return "Chase";
-		case UNIT_STATE.ATTACK:
-		return "Attack";
+		case UNIT_STATE.COMMIT:
+		return "Commit";
 		case UNIT_STATE.HURT:
 		return "Hurt";
 		case UNIT_STATE.DIE:

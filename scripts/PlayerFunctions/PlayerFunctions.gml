@@ -12,6 +12,7 @@ function PlayerStateFree()
 
 function PlayerIdleControlled()
 {
+	action = -1;
 	// movement
 	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
 	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
@@ -63,17 +64,18 @@ function PlayerIdleControlled()
 		} 
 	}
 	
-	if((attackTime >= attackSpeed)
-	&& instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= meleeRange))
-	{
-		state = UNIT_STATE.ATTACK;
-	}
-	
 	// attack key logic
-	if(keyAttack)
+	if(keyAttack
+	&& ds_list_size(actionTable) > 0
+	&& ds_list_size(skillTable) > 0)
 	{
-		state = UNIT_STATE.ATTACK;
+		var _timer = skillTable[| (actionTable[| 0].skillId)].skillTimer;
+		var _cooldown = skillTable[| (actionTable[| 0].skillId)].skillCooldown;
+		if(_timer >= _cooldown)
+		{
+			action = 0; 
+			ActionCommit();
+		}
 	}
 	
 	// activate key logic
@@ -168,7 +170,6 @@ function PlayerStateAttack()
 	
 	if(_animationEnd)
 	{
-		attackTime = 0;
 		state = UNIT_STATE.IDLE;
 	}
 }
