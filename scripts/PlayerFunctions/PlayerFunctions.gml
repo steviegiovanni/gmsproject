@@ -57,7 +57,7 @@ function PlayerIdleControlled()
 	if(!instance_exists(target))
 	{
 		var _potentialTarget = instance_nearest(x, y, pEnemy);
-		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= attackRange)
+		if(instance_exists(_potentialTarget) && point_distance(x, y, _potentialTarget.x, _potentialTarget.y) <= meleeRange)
 		{
 			target = _potentialTarget;
 		} 
@@ -65,7 +65,7 @@ function PlayerIdleControlled()
 	
 	if((attackTime >= attackSpeed)
 	&& instance_exists(target)
-	&& (point_distance(x, y, target.x, target.y) <= attackRange))
+	&& (point_distance(x, y, target.x, target.y) <= meleeRange))
 	{
 		state = UNIT_STATE.ATTACK;
 	}
@@ -136,11 +136,14 @@ function PlayerIdleControlled()
 
 function PlayerStateAttack()
 {
-	// movement
-	hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
-	vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
+	if(playerControlled)
+	{
+		// movement
+		hSpeed = lengthdir_x(inputMagnitude * unitSpeed, inputDirection);
+		vSpeed = lengthdir_y(inputMagnitude * unitSpeed, inputDirection);
 	
-	UnitCollision();
+		UnitCollision();
+	}
 	
 	// attack just started
 	if(sprite_index != sprites[UNIT_SPRITE.ATTACK])

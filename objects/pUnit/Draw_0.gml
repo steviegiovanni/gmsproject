@@ -37,8 +37,8 @@ if(global.debug)
 	0,
 	floor(x),
 	floor(y),
-	attackRange / _circleSize,
-	attackRange / _circleSize,
+	meleeRange / _circleSize,
+	meleeRange / _circleSize,
 	image_angle,
 	c_red,
 	image_alpha

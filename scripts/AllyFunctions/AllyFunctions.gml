@@ -29,7 +29,7 @@ function AllyIdle()
 	|| (!global.focusAttacks && (ds_map_size(threatTable)  <= 0))
 	|| (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable) <= 0)))
 	{
-		if(point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) > attackRange)
+		if(point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) > meleeRange)
 		{
 			timePassedMoving = 0;
 			state = UNIT_STATE.RESET;
@@ -106,7 +106,7 @@ function AllyReset()
 	
 	if(!instance_exists(global.controlledUnit)
 	|| (!fleeing && ((!global.focusAttacks && (ds_map_size(threatTable)  > 0)) || (global.focusAttacks && (ds_map_size(global.controlledUnit.threatTable)  > 0))))
-	|| (point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) <= attackRange))
+	|| (point_distance(x, y, global.controlledUnit.x, global.controlledUnit.y) <= meleeRange))
 	{
 		timePassedMoving = 0;
 		state = UNIT_STATE.IDLE;
@@ -119,8 +119,8 @@ function AllyReset()
 		do
 		{
 			var _direction = point_direction(global.controlledUnit.x, global.controlledUnit.y, x, y) + irandom_range(-90, 90);
-			var _x = global.controlledUnit.x + lengthdir_x(attackRange, _direction);
-			var _y = global.controlledUnit.y + lengthdir_y(attackRange, _direction);
+			var _x = global.controlledUnit.x + lengthdir_x(meleeRange, _direction);
+			var _y = global.controlledUnit.y + lengthdir_y(meleeRange, _direction);
 			var _collision = tilemap_get_at_pixel(collisionMap, _x, _y);
 			
 			if(!_collision)

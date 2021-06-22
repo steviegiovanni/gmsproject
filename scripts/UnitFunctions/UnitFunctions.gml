@@ -230,9 +230,9 @@ function UnitLatchOn()
 	if(instance_exists(_highestEnmityUnit))
 	{
 		target = _highestEnmityUnit;
-		if(point_distance(x, y, target.x, target.y) > attackRange)
+		if(point_distance(x, y, target.x, target.y) > meleeRange)
 		{
-			chaseStopRadius = attackRange;
+			chaseStopRadius = meleeRange;
 			state = UNIT_STATE.CHASE;
 		}
 	}
@@ -258,13 +258,13 @@ function ActionCheckAttack()
 	if(instance_exists(_highestEnmityUnit))
 	{
 		target = _highestEnmityUnit;
-		if(point_distance(x, y, target.x, target.y) <= attackRange)
+		if(point_distance(x, y, target.x, target.y) <= meleeRange)
 		{
 			ActionCommitAttack();
 		}
 		else
 		{
-			chaseStopRadius = attackRange;
+			chaseStopRadius = meleeRange;
 			state = UNIT_STATE.CHASE;
 		}
 		return true;
@@ -278,7 +278,6 @@ function ActionCommitAttack()
 	{
 		actionTable[| action].timer = 0;
 	}
-	sprite_index = sprites[UNIT_SPRITE.ATTACK];
 	image_index = 0;
 	image_speed = 1.0;
 	state = UNIT_STATE.ATTACK;

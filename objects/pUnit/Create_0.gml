@@ -45,12 +45,13 @@ aggroRadius = 40;
 aggroLostRadius = 100;
 
 // auto attack parameters
-attackRange = 16;
 attackSpeed = 240;
 attackTime = attackSpeed;
 
 // targetting parameters
 target = noone;
+
+meleeRange = 25;
 
 // sprites
 sprites[UNIT_SPRITE.IDLE] = sSlime;

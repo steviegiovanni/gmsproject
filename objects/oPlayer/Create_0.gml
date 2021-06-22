@@ -38,3 +38,6 @@ if(global.targetRoomStartX != -1)
 	y = global.targetRoomStartY;
 	direction = global.targetRoomStartDirection;
 }
+
+// actions
+ds_list_add(actionTable, new Action("attack", 240, ActionCheckAttack, ActionCommitAttack));
