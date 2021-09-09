@@ -38,6 +38,7 @@
     {"id":{"name":"MACROS","path":"scripts/MACROS/MACROS.yy",},"order":1,},
     {"id":{"name":"oTransition","path":"objects/oTransition/oTransition.yy",},"order":13,},
     {"id":{"name":"ScriptExecuteArray","path":"scripts/ScriptExecuteArray/ScriptExecuteArray.yy",},"order":6,},
+    {"id":{"name":"TestGesture","path":"objects/TestGesture/TestGesture.yy",},"order":20,},
     {"id":{"name":"DropItems","path":"scripts/DropItems/DropItems.yy",},"order":12,},
     {"id":{"name":"oFragPlant","path":"objects/oFragPlant/oFragPlant.yy",},"order":11,},
     {"id":{"name":"sQuesty","path":"sprites/sQuesty/sQuesty.yy",},"order":7,},
@@ -119,7 +120,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.2.560",
+    "IDEVersion": "2.3.4.577",
   },
   "resourceVersion": "1.4",
   "name": "gmsproject2",

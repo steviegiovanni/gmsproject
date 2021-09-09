@@ -41,6 +41,10 @@ timePassedBeforeWandering = 0;
 wanderDistance = 32;
 maxResetTime = 600;
 
+// knockback recovery parameters
+timePassedKnockbacked = 0;
+knockbackRecoveryTime = 30;
+
 // aggro parameters
 aggroRadius = 40;
 aggroLostRadius = 100;

@@ -165,6 +165,8 @@ function DamageUnit(_unit, _damage, _source, _knockback)
 				xTo = x - lengthdir_x(_knockback, _knockDirection);
 				yTo = y - lengthdir_y(_knockback, _knockDirection);
 			}
+			
+			timePassedKnockbacked = 0;
 		}
 	}
 }
@@ -319,6 +321,12 @@ function UnitAttack()
 
 function UnitHurt()
 {
+	if(++timePassedKnockbacked > knockbackRecoveryTime)
+	{
+		state = UNIT_STATE.IDLE;
+		return;
+	}
+	
 	sprite_index = sprites[UNIT_SPRITE.HURT];
 	var _distanceToGo = point_distance(x, y, xTo, yTo);
 	if(_distanceToGo > unitSpeed)
@@ -341,6 +349,6 @@ function UnitHurt()
 	{
 		x = xTo;
 		y = yTo;
-		state = UNIT_STATE.IDLE;
+		//state = UNIT_STATE.IDLE;
 	}
 }

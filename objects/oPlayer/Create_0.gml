@@ -30,6 +30,7 @@ unitScript[UNIT_STATE.RESET] = AllyReset;
 spriteAnimationFunctions[UNIT_SPRITE.IDLE] = AnimateSprite4Dir;
 spriteAnimationFunctions[UNIT_SPRITE.ALERT] = AnimateSprite2Dir;
 spriteAnimationFunctions[UNIT_SPRITE.MOVE] = AnimateSprite4Dir;
+spriteAnimationFunctions[UNIT_SPRITE.HURT] = AnimateSprite2Dir;
 
 if(global.targetRoomStartX != -1)
 {
