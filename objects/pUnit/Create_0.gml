@@ -52,6 +52,10 @@ aggroLostRadius = 100;
 // targetting parameters
 target = noone;
 
+// combo parameters
+comboCount = 0;
+maxComboCount = 1;
+
 meleeRange = 25;
 
 // sprites

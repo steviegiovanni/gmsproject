@@ -315,6 +315,11 @@ function UnitAttack()
 			DamageUnit(target, 5, id, 10);
 		}
 		
+		if(++comboCount == maxComboCount)
+		{
+			comboCount = 0;
+		}
+		
 		state = UNIT_STATE.IDLE;
 	}
 }

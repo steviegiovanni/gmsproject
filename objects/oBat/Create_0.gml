@@ -1,7 +1,7 @@
 // Inherit the parent event
 event_inherited();
 
-//playerControlled = true;
+playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 

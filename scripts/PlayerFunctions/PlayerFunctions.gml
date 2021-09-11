@@ -170,6 +170,11 @@ function PlayerStateAttack()
 	
 	if(_animationEnd)
 	{
+		if(++comboCount == maxComboCount)
+		{
+			comboCount = 0;
+		}
+		
 		state = UNIT_STATE.IDLE;
 	}
 }

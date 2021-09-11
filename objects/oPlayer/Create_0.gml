@@ -1,6 +1,6 @@
 event_inherited();
 
-playerControlled = true;
+playerControlled = false;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -11,6 +11,8 @@ distanceRoll = 52;
 distanceBonk = 40;
 distanceBonkHeight = 12;
 speedBonk = 1.5;
+
+maxComboCount = 3;
 
 spriteRoll = Sprite1_Roll;
 
@@ -40,7 +42,11 @@ if(global.targetRoomStartX != -1)
 }
 
 // skills
-ds_list_add(skillTable, new Skill("attack", 240, PlayerStateAttack));
+ds_list_add(skillTable, new Skill("attack", 240, A1Attack1));
+ds_list_add(skillTable, new Skill("attack2", 240, A1Attack2));
+ds_list_add(skillTable, new Skill("attack3", 240, A1Attack3));
 
 // actions
 ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack));
+ds_list_add(actionTable, new Action("attack2", 1, ActionCheckAttack));
+ds_list_add(actionTable, new Action("attack3", 2, ActionCheckAttack));
