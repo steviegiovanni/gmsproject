@@ -25,6 +25,13 @@ if(!global.gamePaused)
 		}
 	}
 	
+	// combo decay
+	if(++comboTimer > comboDecay)
+	{
+		comboCount = 0;
+		comboTimer = 0;
+	}
+	
 	if(unitScript[state] != -1)
 	{
 		script_execute(unitScript[state]);

@@ -1,6 +1,6 @@
 event_inherited();
 
-playerControlled = false;
+playerControlled = true;
 
 state = UNIT_STATE.IDLE;
 hitByAttack = -1;
@@ -42,11 +42,14 @@ if(global.targetRoomStartX != -1)
 }
 
 // skills
-ds_list_add(skillTable, new Skill("attack", 240, A1Attack1));
-ds_list_add(skillTable, new Skill("attack2", 240, A1Attack2));
-ds_list_add(skillTable, new Skill("attack3", 240, A1Attack3));
+ds_list_add(skillTable, new Skill("attack1", 60, A1Attack1));
+ds_list_add(skillTable, new Skill("attack2", 60, A1Attack2));
+ds_list_add(skillTable, new Skill("attack3", 60, A1Attack3));
 
 // actions
-ds_list_add(actionTable, new Action("attack", 0, ActionCheckAttack));
-ds_list_add(actionTable, new Action("attack2", 1, ActionCheckAttack));
-ds_list_add(actionTable, new Action("attack3", 2, ActionCheckAttack));
+ds_list_add(actionTable, new Action("attack1", 0, A1CheckAttack1));
+ds_list_add(actionTable, new Action("attack2", 1, A1CheckAttack2));
+ds_list_add(actionTable, new Action("attack3", 2, A1CheckAttack3));
+
+// combos
+combos = [0, 1, 2];

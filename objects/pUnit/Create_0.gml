@@ -55,6 +55,9 @@ target = noone;
 // combo parameters
 comboCount = 0;
 maxComboCount = 1;
+comboDecay = 30;
+comboTimer = 0;
+combos = [];
 
 meleeRange = 25;
 

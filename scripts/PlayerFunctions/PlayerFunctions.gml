@@ -67,13 +67,15 @@ function PlayerIdleControlled()
 	// attack key logic
 	if(keyAttack
 	&& ds_list_size(actionTable) > 0
-	&& ds_list_size(skillTable) > 0)
+	&& ds_list_size(skillTable) > 0
+	&& array_length(combos) > comboCount)
 	{
-		var _timer = skillTable[| (actionTable[| 0].skillId)].skillTimer;
-		var _cooldown = skillTable[| (actionTable[| 0].skillId)].skillCooldown;
+		var _actionId = combos[comboCount];
+		var _timer = skillTable[| (actionTable[| _actionId].skillId)].skillTimer;
+		var _cooldown = skillTable[| (actionTable[| _actionId].skillId)].skillCooldown;
 		if(_timer >= _cooldown)
 		{
-			action = 0; 
+			action = _actionId; 
 			ActionCommit();
 		}
 	}

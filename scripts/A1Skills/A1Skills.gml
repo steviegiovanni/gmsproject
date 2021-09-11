@@ -32,6 +32,8 @@ function A1Attack1()
 	
 	if(_animationEnd)
 	{
+		comboDecay = 30;
+		comboTimer = 0;
 		if(++comboCount == maxComboCount)
 		{
 			comboCount = 0;
@@ -39,6 +41,26 @@ function A1Attack1()
 		
 		state = UNIT_STATE.IDLE;
 	}
+}
+
+function A1CheckAttack1()
+{
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTableGeneralized();
+	if(instance_exists(_highestEnmityUnit) && (comboCount == 0))
+	{
+		target = _highestEnmityUnit;
+		if(point_distance(x, y, target.x, target.y) <= meleeRange)
+		{
+			ActionCommit();
+		}
+		else
+		{
+			chaseStopRadius = meleeRange;
+			state = UNIT_STATE.CHASE;
+		}
+		return true;
+	}
+	return false;
 }
 
 function A1Attack2()
@@ -75,6 +97,8 @@ function A1Attack2()
 	
 	if(_animationEnd)
 	{
+		comboDecay = 30;
+		comboTimer = 0;
 		if(++comboCount == maxComboCount)
 		{
 			comboCount = 0;
@@ -82,6 +106,26 @@ function A1Attack2()
 		
 		state = UNIT_STATE.IDLE;
 	}
+}
+
+function A1CheckAttack2()
+{
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTableGeneralized();
+	if(instance_exists(_highestEnmityUnit) && (comboCount == 1))
+	{
+		target = _highestEnmityUnit;
+		if(point_distance(x, y, target.x, target.y) <= meleeRange)
+		{
+			ActionCommit();
+		}
+		else
+		{
+			chaseStopRadius = meleeRange;
+			state = UNIT_STATE.CHASE;
+		}
+		return true;
+	}
+	return false;
 }
 
 function A1Attack3()
@@ -118,6 +162,8 @@ function A1Attack3()
 	
 	if(_animationEnd)
 	{
+		comboDecay = 30;
+		comboTimer = 0;
 		if(++comboCount == maxComboCount)
 		{
 			comboCount = 0;
@@ -125,4 +171,24 @@ function A1Attack3()
 		
 		state = UNIT_STATE.IDLE;
 	}
+}
+
+function A1CheckAttack3()
+{
+	var _highestEnmityUnit = GetHighestEnmityUnitFromThreatTableGeneralized();
+	if(instance_exists(_highestEnmityUnit) && (comboCount == 2))
+	{
+		target = _highestEnmityUnit;
+		if(point_distance(x, y, target.x, target.y) <= meleeRange)
+		{
+			ActionCommit();
+		}
+		else
+		{
+			chaseStopRadius = meleeRange;
+			state = UNIT_STATE.CHASE;
+		}
+		return true;
+	}
+	return false;
 }
