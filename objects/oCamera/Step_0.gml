@@ -1,5 +1,16 @@
 /// @description update camera
 
+var currentDisplayWidth = window_get_width();
+var currentDisplayHeight = window_get_height();
+if((currentDisplayWidth != displayWidth) || (currentDisplayHeight != displayHeight)) {
+	displayWidth = currentDisplayWidth;
+	displayHeight = currentDisplayHeight;
+	ReadjustCamera();
+}
+
+viewWidthHalf = camera_get_view_width(cam) * 0.5;
+viewHeightHalf = camera_get_view_height(cam) * 0.5;
+
 // update destination
 if(instance_exists(global.controlledUnit))
 {

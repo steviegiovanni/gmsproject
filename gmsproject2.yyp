@@ -23,7 +23,7 @@
     {"id":{"name":"sTiles","path":"sprites/sTiles/sTiles.yy",},"order":4,},
     {"id":{"name":"sPlant","path":"sprites/sPlant/sPlant.yy",},"order":12,},
     {"id":{"name":"sDebugCircle","path":"sprites/sDebugCircle/sDebugCircle.yy",},"order":21,},
-    {"id":{"name":"ScreenShake","path":"scripts/ScreenShake/ScreenShake.yy",},"order":3,},
+    {"id":{"name":"CameraFunctions","path":"scripts/CameraFunctions/CameraFunctions.yy",},"order":3,},
     {"id":{"name":"sA1Attack2","path":"sprites/sA1Attack2/sA1Attack2.yy",},"order":7,},
     {"id":{"name":"sSlimeDie","path":"sprites/sSlimeDie/sSlimeDie.yy",},"order":18,},
     {"id":{"name":"sA1Idle","path":"sprites/sA1Idle/sA1Idle.yy",},"order":0,},
@@ -81,6 +81,8 @@
   "Options": [
     {"name":"Main","path":"options/main/options_main.yy",},
     {"name":"Windows","path":"options/windows/options_windows.yy",},
+    {"name":"macOS","path":"options/mac/options_mac.yy",},
+    {"name":"operagx","path":"options/operagx/options_operagx.yy",},
   ],
   "isDnDProject": false,
   "isEcma": false,
@@ -124,7 +126,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.4.580",
+    "IDEVersion": "2.3.6.595",
   },
   "resourceVersion": "1.4",
   "name": "gmsproject2",
