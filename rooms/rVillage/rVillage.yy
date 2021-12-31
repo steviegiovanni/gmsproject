@@ -17,7 +17,6 @@
   ],
   "layers": [
     {"instances":[
-        {"properties":[],"isDnd":false,"objectId":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},"inheritCode":true,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":{"name":"inst_35EF7042","path":"rooms/rParent/rParent.yy",},"frozen":false,"ignore":false,"inheritItemSettings":false,"x":120.0,"y":136.0,"resourceVersion":"1.0","name":"inst_35EF7042","tags":[],"resourceType":"GMRInstance",},
         {"properties":[
             {"propertyId":{"name":"entityActivateScript","path":"objects/pEntity/pEntity.yy",},"objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"value":"NewTextBox","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
             {"propertyId":{"name":"entityActivateArgs","path":"objects/pEntity/pEntity.yy",},"objectId":{"name":"pEntity","path":"objects/pEntity/pEntity.yy",},"value":"[\"Don't walk on the grass!\", 0]","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
@@ -48,7 +47,6 @@
         {"properties":[
             {"propertyId":{"name":"objectToSpawn","path":"objects/oSpawner/oSpawner.yy",},"objectId":{"name":"oSpawner","path":"objects/oSpawner/oSpawner.yy",},"value":"oSlime","resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMOverriddenProperty",},
           ],"isDnd":false,"objectId":{"name":"oSpawner","path":"objects/oSpawner/oSpawner.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":72.0,"y":32.0,"resourceVersion":"1.0","name":"inst_42141D0","tags":[],"resourceType":"GMRInstance",},
-        {"properties":[],"isDnd":false,"objectId":{"name":"oBat","path":"objects/oBat/oBat.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":208.0,"y":64.0,"resourceVersion":"1.0","name":"inst_479FCDDC","tags":[],"resourceType":"GMRInstance",},
         {"properties":[],"isDnd":false,"objectId":{"name":"TestGesture","path":"objects/TestGesture/TestGesture.yy",},"inheritCode":false,"hasCreationCode":false,"colour":4294967295,"rotation":0.0,"scaleX":1.0,"scaleY":1.0,"imageIndex":0,"imageSpeed":1.0,"inheritedItemId":null,"frozen":false,"ignore":false,"inheritItemSettings":false,"x":152.0,"y":152.0,"resourceVersion":"1.0","name":"inst_6CBB3C1B","tags":[],"resourceType":"GMRInstance",},
       ],"visible":true,"depth":0,"userdefinedDepth":false,"inheritLayerDepth":true,"inheritLayerSettings":false,"gridX":8,"gridY":8,"layers":[],"hierarchyFrozen":false,"resourceVersion":"1.0","name":"Instances","tags":[],"resourceType":"GMRInstanceLayer",},
     {"tilesetId":{"name":"tCol","path":"tilesets/tCol/tCol.yy",},"x":0,"y":0,"tiles":{"SerialiseWidth":80,"SerialiseHeight":45,"TileSerialiseData":[
@@ -198,7 +196,6 @@
   "creationCodeFile": "",
   "inheritCode": true,
   "instanceCreationOrder": [
-    {"name":"inst_35EF7042","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_35A7EC73","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_59C306C2","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_55319572","path":"rooms/rVillage/rVillage.yy",},
@@ -217,7 +214,6 @@
     {"name":"inst_8D797BB","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_42141D0","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_6A624BBD","path":"rooms/rVillage/rVillage.yy",},
-    {"name":"inst_479FCDDC","path":"rooms/rVillage/rVillage.yy",},
     {"name":"inst_6CBB3C1B","path":"rooms/rVillage/rVillage.yy",},
   ],
   "inheritCreationOrder": true,

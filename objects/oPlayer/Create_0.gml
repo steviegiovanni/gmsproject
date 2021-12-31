@@ -1,5 +1,7 @@
 event_inherited();
 
+stats = new UnitStats(200);
+
 playerControlled = true;
 
 state = UNIT_STATE.IDLE;

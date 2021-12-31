@@ -4,8 +4,6 @@
 #macro LEFTRIGHT_DIR round(direction / 180)
 #macro ROOM_START rVillage
 
-#macro RESOLUTION_W 1280
-#macro RESOLUTION_H 720
 #macro MIN_CAMERA_W 360
 #macro MIN_CAMERA_H 360
 
