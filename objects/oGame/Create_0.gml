@@ -23,7 +23,7 @@ ds_list_add(global.partyMembers, new PartyMember(0, pointer_null, new UnitStats(
 ds_list_add(global.partyMembers, new PartyMember(1, pointer_null, new UnitStats(global.units[| 1].baseStats.hp), pointer_null));
 
 global.activeParty = ds_list_create();
-ds_list_add(global.activeParty, 0);
 ds_list_add(global.activeParty, 1);
+ds_list_add(global.activeParty, 0);
 
 room_goto(ROOM_START);
