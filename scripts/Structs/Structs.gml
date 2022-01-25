@@ -13,23 +13,30 @@ function Skill(_skillName, _skillCooldown, _skillCommit) constructor
 	skillTimer = skillCooldown;
 }
 
-function UnitStats(_hp) constructor
+function UnitStats(_hp)
 {
-	hp = _hp;
+	var unitStats = ds_map_create();
+	unitStats[? STATS.HEALTH] = _hp;
+	return unitStats;
 }
 
-function UnitDefinition(_uuid, _unit, _baseStats, _statGrowths) constructor
+function UnitDefinition(_uuid, _unit, _baseStats, _statGrowths)
 {
-	uuid = _uuid;
-	unit = _unit;
-	baseStats = _baseStats;
-	statGrowths = _statGrowths;
+	var unitDefinition = ds_map_create();
+	unitDefinition[? UNIT_DEFINITION.UUID] = _uuid;
+	unitDefinition[? UNIT_DEFINITION.UNIT] = _unit;
+	unitDefinition[? UNIT_DEFINITION.BASE_STATS] = _baseStats;
+	unitDefinition[? UNIT_DEFINITION.STAT_GROWTHS] = _statGrowths;
+	return unitDefinition;
 }
 
-function PartyMember(_uid, _lvl, _currentStats, _equips) constructor
+function PartyMember(_uid, _lvl, _currentStats, _equips)
 {
-	uid = _uid;
-	lvl = _lvl;
-	currentStats = _currentStats;
-	equips = _equips;
+	var partyMember = ds_map_create();
+	partyMember[? PARTY_MEMBER.UID] = _uid;
+	partyMember[? PARTY_MEMBER.LEVEL] = _lvl;
+	partyMember[? PARTY_MEMBER.CURRENT_STATS] = ds_map_create();
+	ds_map_copy(partyMember[? PARTY_MEMBER.CURRENT_STATS], _currentStats);
+	partyMember[? PARTY_MEMBER.EQUIPS] = _equips;
+	return partyMember;
 }

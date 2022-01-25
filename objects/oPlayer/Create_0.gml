@@ -1,6 +1,6 @@
 event_inherited();
 
-stats = new UnitStats(200);
+stats = UnitStats(200);
 
 playerControlled = true;
 

@@ -145,11 +145,11 @@ function DamageUnit(_unit, _damage, _source, _knockback)
 	{
 		if(state != UNIT_STATE.DIE)
 		{
-			stats.hp -= _damage;
+			stats[? STATS.HEALTH] -= _damage;
 			flash = 1;
 			
 			// hurt or dead?
-			if(stats.hp <= 0)
+			if(stats[? STATS.HEALTH] <= 0)
 			{
 				state = UNIT_STATE.DIE;
 			}

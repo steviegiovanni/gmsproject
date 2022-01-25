@@ -21,7 +21,7 @@ lastState = state;
 chaseStopRadius = 0;
 
 // stats
-stats = new UnitStats(50);
+stats = UnitStats(50);
 
 // movement parameters
 hSpeed = 0;
